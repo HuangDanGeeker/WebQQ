@@ -1,0 +1,513 @@
+html, body {
+    margin: 0;
+    background-color: #efefef;
+    font-family: sans-serif;
+}
+
+#wrapper {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(5, 5, 5, .6);
+    text-align: center;
+    color: #fff;
+    display: block;
+    padding-top: 200px;
+    width: 100%;
+    height: 100%;
+}
+#wrapper > input{
+	font-size: 18px;
+}
+#main{
+    width: 100%;
+    height: 100%;
+    
+}
+#backgroundImg{
+	z-index:-1;
+	background-image:url("http://localhost:8080/SpringMVC/images/MainBackground1.jpg");
+	display:block;
+	position:absolute;
+	width:100%;
+	height:100%;
+	top: 0;
+	left: 0;
+}
+#icon{
+	margin-lef: 20px;
+	width:100%;
+	height:100%;
+}
+
+#iconDiv{
+	 margin-top:10px; 
+	 margin-right:2%;
+	 width:50px; 
+	 height:50px; 
+	 float: left;
+	 border-radius: 5px 5px 5px 5px; 
+ 	 border: 1px solid #222;
+	
+}
+
+#list{
+	padding: 10px 0%; 
+	float: left; 
+	width: 20%;
+}
+
+#list_header{
+	 width: 100%; 
+	 height: 50px; 
+	 background-color: #3A3A3A;  
+	 border-radius: 5px 5px 0 0; 
+	 display: block; 
+	 padding: 0 0 0 0; 
+	 text-align: center; 
+	 line-height: 40px; 
+	 font-size: 20px;
+}
+
+#list_content_friend{
+	width: 100%; 
+	height: 400px;
+	display: block;
+	background-color: #E0E0E0; 
+	padding: 0 0; 
+	overflow-y:auto;
+	opacity: 0.7;
+}
+
+#list_content_talk{
+	width: 100%; 
+	height: 400px;
+	display: none;
+	background-color: #E0E0E0; 
+	padding: 0 0; 
+	overflow-y:auto;
+	opacity: 0.7;
+	
+}
+
+#list_content_selfInfo{
+	width: 100%; 
+	height: 400px;
+	display: none;
+	background-color: #E0E0E0; 
+	padding: 0 0; 
+	overflow-y:auto;
+	opacity: 0.7;
+	font-size: 18px;
+}
+
+#list_content_selfInfo > div{
+	margin-left: 2%;
+}
+
+#selfAge{
+	border-radius:2px 2px 2px 2px;
+}
+
+#selfSignature{
+	margin-left: 2%;
+}
+
+#rewriteSelfInfoBtn{
+	margin:1% auto;
+	border-radius: 2px 2px;
+}
+
+#list_footer{
+	width: 100%; 
+	height: 63px;
+	display: red;
+	border-radius: 0 0 5px 5px; 
+	background-color: #3A3A3A;
+	padding: 0 0; 
+	margin: 0 0;
+}
+
+#chatList{
+	width: 30%; 
+	height:60px; 
+	display:inline-table; 
+	padding:0 0;  
+	background-color: #3A3A3A; 
+	border-radius: 0 0 0 5px ;
+	text-align:center;
+	border-right: 1px solid #222;
+	border-left: 1px solid #555;
+}
+
+#chatList img{
+	width: 30%; 
+	height: 30%;
+	margin-top:0;
+	padding-top:0;
+}
+
+#friendList{
+	width: 33%; 
+	height: 60px; 
+	padding: 0 0; 
+	display:inline-table; 
+	background-color: #3A3A3A;
+	text-align:center;
+	border-right: 1px solid #222;
+	border-left: 1px solid #555;
+}
+
+#friendList img{
+	width: 30%; 
+	height: 30%;
+}
+
+.list-friend{
+	height: 45px; 
+	background-color: #787878;
+	border: 1px solid #222;
+}
+
+.list-talk{
+	height: 45px; 
+	background-color: #787878;
+	border: 0.5px solid #222;
+}
+
+.list-img{
+	width:20%; 
+	height:100%;
+	float: left;
+	
+}
+.list-talk > font{
+	float:left; 
+	border-radius: 2px 2px; 
+	
+}
+#opts{
+	width: 30%; 
+	height:60px; 
+	padding: 0 0; 
+	display:inline-table; 
+	background-color: #3A3A3A;
+	text-align:center;
+	border-right: 1px solid #222;
+	border-left: 1px solid #555;
+}
+
+#opts img{
+	width: 30%; 
+	height: 30%;
+}
+
+#dialog{
+	display:none; 
+	width: 40%; 
+	height: 500px; 
+	background-color: #3A3A3A; 
+	float: left; 
+	margin-top:5px; 
+	padding: 10px 0; 
+	border-radius: 5px;
+}
+
+#friendName{
+	height: 10%; 
+	background-color: #3A3A3A;
+	text-align: center;
+	line-height: 100%;
+	font-size: 18px;
+	color:white;
+	border-radius: 5px 5px 5px 5px;
+}
+
+#talkContent{
+	height: 100%; 
+	background-color: #787878;
+	border-radius:6px 6px;
+	
+	overflow-y: auto;
+	
+}
+
+.leftBob{
+	padding-top:2%; 
+	display:block;  
+	text-align:left; 	
+	height:24px; 
+	font-size:24px; 
+	border-radius: 2px 2px; 
+	max-width: 80%;
+}
+.leftBob > font{
+	border-radius: 2px 2px; 
+	background-color: #A3D648;
+}
+.leftBob img{
+	margin-right:1%;
+	margin-left:1%;
+	width: 5%;
+	height: 100%;
+	border-radius: 3px 3px;
+}
+.rightBob{
+	padding-top:2%; 
+	display:block;   
+	text-align:right; 
+	height:24px; 
+	font-size:24px; 
+	border-radius: 2px 2px;
+
+}
+.rightBob > font{
+	border-radius: 2px 2px; 
+	background-color: #FAFAFA;
+}
+
+
+.rightBob img{
+	margin-right:1%;
+	margin-left:1%;
+	width: 5%;
+	height: 100%;
+	border-radius: 3px 3px;
+}
+#emojiContent{
+	height: 20%; 
+	background-color: #3A3A3A; 
+	display:none; 
+	overflow-y:auto; 
+	padding:0 0;
+}
+
+#talkTools{
+	height: 10%; background-color: #3A3A3A;
+}
+
+#emojiTools{
+	float: left; 
+	width: 12%; 
+	height: 100%; 
+	background-color: #3A3A3A;
+	text-align:center;
+	
+}
+
+#emojiTools img{
+	width: 60%;
+	height: 70%;
+	margin-top: 15%;
+}
+
+#chatMsg{
+	border-radius:5px 5px 5px 5px; 
+	width: 100%; 
+	height: 100%; 
+	background-color: #F9F9F9; 
+	overflow-y:auto;
+	margin-top: 1%;
+}
+
+#sendBtn{
+	
+	border-radius:5px 5px 5px 5px; 
+	width: 100%; 
+	height: 100%;
+}
+
+#MsgRecordBtn{
+	float: left; 
+	width: 12%; 
+	height: 100%; 
+	background-color: #3A3A3A;
+}
+
+#MsgRecordBtn img{
+	width: 130%;
+	height: 120%;
+}
+
+#optsDialog{
+	display:none; 
+	width: 40%; 
+	height: 500px; 
+	background-color: #E0E0E0; 
+	float: left; 
+	margin-top:5px; 
+	padding: 10px 0; 
+	border-radius: 5px; 
+	font-size: 18px;
+}
+#changeIcon{
+	width:100px;
+	height: 25px; 
+	border-radius: 5px; 
+	padding-left: 5%;
+}
+#changeIcon > p{
+	background-color: #3A3A3A; 
+	border-radius: 5px; 
+	color:white;
+	text-align:center;
+}
+
+#changeIconDiv{
+	height: 10%; 
+	display: none;
+	overflow-x:auto;
+	background-color: #787878;
+	border-radius:5px 5px;
+}
+#changeIconDiv > img{
+	height: 100%; 
+	width: 20%;
+	float:left;
+}
+
+#deleteFriend{
+	width:100px;
+	height: 25px; 
+	border-radius: 5px; 
+	padding-left: 5%;
+}
+
+#deleteFriend > p{
+	background-color: #3A3A3A;  
+	border-radius: 5px;
+	color:white;
+	text-align:center;
+}
+
+#deleteFriendsDiv{
+	height: 40%; 
+	display:none;
+	background-color: #787878;
+	border-radius:5px 5px;
+}
+
+#deleteFriendInfo{
+	margin-left:2%; 
+	margin-top:1%;
+}
+
+#addFriend{
+	width:100px;
+	height: 25px; 
+	border-radius: 5px; 
+	padding-left: 5%;
+}
+
+#addFriend > p{
+	background-color: #3A3A3A;  
+	border-radius: 5px;
+	color:white;
+	text-align:center;
+}
+
+
+#addFriendsDiv{
+	height: 40%; 
+	display:none;
+	background-color: #787878;
+	border-radius:5px 5px;
+}
+
+#addFriendInfo{
+	margin-left:2%; 
+	margin-top:1%;
+}
+
+#resignAccount{
+	width:100px;
+	height: 25px; 
+	border-radius: 5px; 
+	padding-left: 5%;
+}
+#resignAccount > p{
+	background-color: #3A3A3A; 
+	border-radius: 5px;
+	color:white;
+	text-align:center;
+}
+
+#resignAccountDiv{
+	height: 50px; 
+	display: none;
+	background-color: #787878;
+	border-radius:5px 5px;
+}
+
+#resignBtn{
+	margin:100px auto;
+	width:20%; 
+	height:100%; 
+	background-color: #3A3A3A;
+	border-radius: 5px 5px;
+	color:white;
+	font-size:20px;
+	text-align:center;
+	line-height: 50px;
+}
+
+
+#recordDialog{
+	display:none; 
+	width: 30%; 
+	height: 500px; 
+	background-color: #728E91; 
+	float: left; 
+	margin-top:5px; 
+	padding: 10px 0 0 0; 
+	border-radius: 5px; 
+	font-size: 18px;
+}
+
+#MsgRecordDiv{
+	height:90%; 
+	overflow-y:auto;
+}
+
+
+
+
+
+.redDot{
+	width:30%;
+	height:30%;
+	padding:auto 10% 0 0;
+	float: right;
+	background-color:red;      
+	border-radius: 15%;      
+	-moz-border-radius: 15%;      
+	-webkit-border-radius: 15%;
+
+	fontSize:20px;
+	text-align:center;
+	line-height:30%;
+	 
+}
+
+#getFormerDiv{
+	background-color:#5C6391;
+	border-radius:5px 5px;
+	margin: 0 15%;
+	height: 60%;
+	width:20%;
+	float: left;
+	text-align:center;
+}
+
+
+#getLaterDiv{
+	background-color:#5C6391;
+	border-radius:5px 5px;
+	margin: 0 15%;
+	height: 60%;
+	width:20%;
+	float: left;
+	text-align:center;
+}

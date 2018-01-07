@@ -1,11 +1,11 @@
 package com.wang.service;
 
 import com.wang.bean.User;
-import com.wang.dao.UserDAO;
+import com.wang.dao.IUserDAO;
 
 public class UserService {
 
-	private UserDAO userDAO = new UserDAO();
+	private IUserDAO userDAO = new IUserDAO();
 	
 	public User get(String id){
 		return userDAO.get(id);

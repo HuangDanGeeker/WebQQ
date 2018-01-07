@@ -2,12 +2,12 @@ package com.wang.service;
 
 import java.util.List;
 
-import com.wang.dao.ImageDAO;
+import com.wang.dao.IImageDAO;
 import com.wang.model.IconImageModel;
 
 public class ImageService implements IService{
 
-	private ImageDAO imageDAO = new ImageDAO();
+	private IImageDAO imageDAO = new IImageDAO();
 	
 	@Override
 	public IconImageModel get(String id) {

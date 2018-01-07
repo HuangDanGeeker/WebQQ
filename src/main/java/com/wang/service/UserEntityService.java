@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.wang.bean.Friend;
 import com.wang.bean.User;
-import com.wang.dao.UserDAO;
+import com.wang.dao.IUserDAO;
 import com.wang.model.UserEntity;
 
 @Service

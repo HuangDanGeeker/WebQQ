@@ -38,7 +38,7 @@ public class FriendService implements IService{
 		//TEST
 		String imageUri = new UserEntityService().getUser(friendId).getImageUri();
 		String sql = "insert into friend_" + id + "values(\""+friendId+"\",\""+imageUri+"\")";
-		friendDAO.add(sql);
+		friendDAO.addFriend(sql);
 	}
 
 

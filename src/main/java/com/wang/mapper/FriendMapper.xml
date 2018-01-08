@@ -20,7 +20,7 @@
 	
 	<delete id="deleteFriend" parameterType="String" statementType="STATEMENT">
 		delete from ${dbName} 
-		where friendId like #{friendId, jdbcType=VARCHAR}
+		where friendId = #{friendId, jdbcType=VARCHAR}
 	</delete>
 	
 	<insert id="addFriend">

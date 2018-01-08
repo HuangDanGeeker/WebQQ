@@ -19,6 +19,10 @@
 		select * from user
 	</select>
 	
+	<select id="getUserImgUri" resultTyep="String">
+		select imageUri from user where id = #{id}
+	</select>
+	
 	<update id="addFriend">
 		insert into ${dbName} values(#{friendId}, #{imageUri_2})	
 	</update>

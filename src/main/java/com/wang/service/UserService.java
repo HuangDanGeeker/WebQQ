@@ -1,14 +1,21 @@
 package com.wang.service;
 
+import javax.annotation.Resource;
+
 import com.wang.bean.User;
+import com.wang.dao.IImageDAO;
 import com.wang.dao.IUserDAO;
 
-public class UserService {
+public class UserService extends BasicService{
 
-	private IUserDAO userDAO = new IUserDAO();
+	@Resource
+	private IUserDAO userDAO;
+	
+	@Resource
+	private IImageDAO imageDAO;
 	
 	public User get(String id){
-		return userDAO.get(id);
+		return userDAO.getUser(id);
 	}
 	
 	public boolean isExist(String id) {
@@ -18,16 +25,23 @@ public class UserService {
 	}
 	
 	public String applyAccount(){
-		return userDAO.applyAccount();
+		
+		String account = userDAO.requireAccount();
+		userDAO.applyAccount(account);
+		return account;
 	}
 	
 	public boolean update(User user){
-		return userDAO.update(user);
+		return userDAO.updateUser(user);
 	}
 	
-	public boolean addFriend(String id, String friendId){
+	public boolean addFriend(String userId, String friendId){
 		
-		userDAO.addFriend(id, friendId);
+		userDAO.createRecordTable(getDBName(userId, friendId));
+		String userImgUri = userDAO.getUserImgUri(userId);
+		String friendImgUri = userDAO.getUserImgUri(friendId);
+		userDAO.addFriend("friend_"+userId, friendId, friendImgUri);
+		userDAO.addFriend("friend_"+friendId, userId, userImgUri);
 		
 		return true;
 	}

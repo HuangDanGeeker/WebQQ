@@ -135,7 +135,7 @@ public class Restfull {
 		//TEST
 		Map<String, Object> map = new HashMap<String, Object>();
 		ImageService imageService = new ImageService();
-		List<IconImageModel> list = imageService.getAll();
+		List<IconImageModel> list = imageService.getAllImgs();
 //		list.add(new IconImageModel("imageId1", "http://localhost:8080/SpringMVC/images/defaultIcon.jpg"));
 		map.put("IconImages", list);
 		return map;

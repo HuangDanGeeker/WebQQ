@@ -18,19 +18,11 @@ public interface IUserDAO{
 
 	public User getUser(@Param("id")String id);
 	
+	public String getUserImgUri(@Param("id")String id);
+	
 	public void createRecordTable(@Param("dbName")String dbName);
 	
 	public void addFriend(@Param("dbName")String dbName, @Param("friendId")String friendId, @Param("friendImageUri")String friendImgUri);
-		
-//TODO 原始addFriend逻辑 在Service中实现
-	//createRecordTable
-	//addFriend
-//		String create_record_sql = "create table if not exists "+record_dbName+"(srcId varchar(20), dstId varchar(20), content varchar(512), timestamp Date,constraint foreign key (srcId) references User(id), foreign key (dstId) references User(id));";
-//		
-//		String add_friend_sql_1 = "insert into friend_"+id+" values('"+friendId+"', '"+imageUri_2+"');";
-//		String add_friend_sql_2 = "insert into friend_"+friendId+" values('"+id+"', '"+imageUri_1+"');";
-
-	
 
 	public boolean deleteUser(@Param("id")String id);
 

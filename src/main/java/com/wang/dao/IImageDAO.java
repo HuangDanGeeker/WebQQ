@@ -55,10 +55,17 @@ public interface IImageDAO{
 //		
 //	}
 
+	
 	public boolean updateUserImage(String id, String imageUri);
 	
+	public List<String> getAllImgIds();
 	
-
+	public List<String> getAllImgUris();
+	
+	public List<IconImageModel> getAllImgs();
+	
+	public void deleteImg(String imageId);
+	public IconImageModel getImg(String imageId);
 	
 	
 }

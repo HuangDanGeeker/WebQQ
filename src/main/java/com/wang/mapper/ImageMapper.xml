@@ -2,10 +2,33 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
   
 <mapper namespace="com.wang.dao.IImageDAO">
+	<resultMap type="com.wang.dao.IconImageModel" id="IconImageModelMap">
+		<result column="imageUri" property="imageUri"></result>
+		<result column="imageId" property="imageId"></result>
+	</resultMap>
 
 	<update id="updateUserImage">
 		update user set imageUri = #{imageUri} where id = #{id}
 	</update>
+
+	<select id="getAllImgIds" resultType="IcomImageModelMap">
+		select imageId from image
+	</select>
 	
+	<select id="getAllImgIds" resultType="String">
+		select imageUri from image
+	</select>
+	
+	<select id="getAllImgs" resultMap="IconImageModelMap">
+		select * from image
+	</select>
+	
+	<delete id="deleteImg">
+		delete from imge where imageId = #{imgeId}
+	</delete>
+	
+	<select id="getImg">
+		select * from imge where imageId = #{imgeId}
+	</select>
 	
 </mapper>

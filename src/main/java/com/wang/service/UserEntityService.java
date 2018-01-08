@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,12 +15,13 @@ import com.wang.dao.IUserDAO;
 import com.wang.model.UserEntity;
 
 @Service
-public class UserEntityService implements IService{
+public class UserEntityService{
 
-	private UserService userService = new UserService();
-	private FriendService friendListService = new FriendService();
-	@Override
-	@Transactional
+	@Resource
+	private UserService userService;
+	@Resource
+	private FriendService friendListService;
+
 	public Object get(String id) {
 		
 		User user = userService.get(id);
@@ -30,7 +33,7 @@ public class UserEntityService implements IService{
 			userEntity.setExist(1);
 			userEntity.setIconUri(user.getImageUri());
 
-			List<Friend> friendList = friendListService.getAllFriend(userEntity.getUserId());
+			List<Friend> friendList = friendListService.getAllFriends(userEntity.getUserId());
 			String[] friendIdList = new String[friendList.size()];
 			String[] friendImgUriList = new String[friendList.size()];
 			Map<String, String> friendMap = new HashMap<String, String>();
@@ -50,17 +53,14 @@ public class UserEntityService implements IService{
 	public User getUser(String id) {
 		
 		User user = userService.get(id);
-		
 		return user;
 	}
 
-	@Override
-	public boolean delete(String id) {
-		friendListService.delete(id);
+	public boolean deleteFriend(String userId, String friendId) {
+		friendListService.deleteFriend(userId, friendId);
 		return true;
 	}
 
-	@Override
 	public List<?> getAll() {
 		
 		return null;

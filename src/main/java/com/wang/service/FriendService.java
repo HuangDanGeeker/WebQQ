@@ -2,57 +2,34 @@ package com.wang.service;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import com.wang.bean.Friend;
-import com.wang.dao.FriendDAO;
+import com.wang.dao.IFriendDAO;
 
-public class FriendService implements IService{
+public class FriendService{
 
-	private FriendDAO friendDAO = new FriendDAO();
-	
+	@Resource
+	private IFriendDAO friendDAO;
 
-
-	@Override
-	public boolean delete(String id) {
-		//TEST
-		//sql 正确性
-		String sql = "drop table friend_" + id;
-		//friendListDAO.opt(sql);
-		return true;
-	}
-
-	public boolean deleteFriend(String id, String friendId){
+	public boolean deleteFriend(String userId, String friendId){
 		
-		return friendDAO.deleteFriend(id, friendId);
+		return friendDAO.deleteFriend("friend_"+userId, friendId);
 	}
 	
 	
-	public List<Friend> getAllFriend(String id) {
-		//TEST
-		//sql 正确性
-		String sql = "select * from friend_" + id;
-		List<Friend> friendList = friendDAO.getAllFriend(sql);
-		return friendList;
+	public List<Friend> getAllFriends(String id) {
+		return friendDAO.getAllFriends("friend_"+id);
 	}
 	
-	public void add(String id, String friendId) {
-		//TEST
-		String imageUri = new UserEntityService().getUser(friendId).getImageUri();
-		String sql = "insert into friend_" + id + "values(\""+friendId+"\",\""+imageUri+"\")";
-		friendDAO.addFriend(sql);
+	public void addFriend(String id, String friendId) {
+		//TODO
+		String friendImgeUri = new UserEntityService().getUser(friendId).getImageUri();
+		friendDAO.addFriend("friend_"+id, friendId, friendImgeUri);
 	}
 
 
-	@Override
-	public Object get(String id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 
-	@Override
-	public List getAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

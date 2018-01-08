@@ -18,7 +18,7 @@ public class UnreachHistoryService{
 	
 	public Map<String,List<HistoryEntity>> getUnreachHistory(String id){
 		FriendService friendListService = new FriendService();
-		List<Friend> friendList = friendListService.getAllFriend(id);
+		List<Friend> friendList = friendListService.getAllFriends(id);
 		Map<String, List<HistoryEntity>> map = new HashMap<String, List<HistoryEntity>>();
 		for(Friend f : friendList){
 			map.put(f.getFriendId(), new ArrayList<HistoryEntity>());

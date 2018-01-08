@@ -42,6 +42,8 @@
     <context:component-scan base-package="com.wang" >
 		<!-- 只扫描controller -->
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Repository" />
 	 </context:component-scan>  
 
 	<!-- 允许对静态资源文件的访问 -->   
@@ -90,7 +92,7 @@
 		<property name="mapperLocations" value="classpath:com/wang/mapper/*.xml"></property>
 	</bean>  
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.wang"></property>
+		<property name="basePackage" value="com.wang.bean, com.wang.dao"></property>
 		<property name="sqlSessionFactoryBeanName" value="sessionFactory"></property>
 	</bean>
 	

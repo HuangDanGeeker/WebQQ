@@ -14,7 +14,7 @@ import com.wang.bean.User;
 import com.wang.dao.IUserDAO;
 import com.wang.model.UserEntity;
 
-@Service
+@Service("userEntityService")
 public class UserEntityService{
 
 	@Resource
@@ -61,10 +61,6 @@ public class UserEntityService{
 		return true;
 	}
 
-	public List<?> getAll() {
-		
-		return null;
-	}
 
 	
 }

@@ -4,9 +4,12 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.stereotype.Service;
+
 import com.wang.bean.ChatRecordItem;
 import com.wang.dao.IChatRecordDAO;
 
+@Service("ChatRecordService")
 public class ChatRecordService extends BasicService{
 
 	@Resource

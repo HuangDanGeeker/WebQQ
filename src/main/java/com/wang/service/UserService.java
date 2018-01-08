@@ -2,10 +2,13 @@ package com.wang.service;
 
 import javax.annotation.Resource;
 
+import org.springframework.stereotype.Service;
+
 import com.wang.bean.User;
 import com.wang.dao.IImageDAO;
 import com.wang.dao.IUserDAO;
 
+@Service("UserService")
 public class UserService extends BasicService{
 
 	@Resource

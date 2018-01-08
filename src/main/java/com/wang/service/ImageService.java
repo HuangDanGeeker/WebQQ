@@ -4,9 +4,12 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.stereotype.Service;
+
 import com.wang.dao.IImageDAO;
 import com.wang.model.IconImageModel;
 
+@Service("ImageService")
 public class ImageService{
 
 	@Resource
@@ -31,11 +34,11 @@ public class ImageService{
 	}
 
 	public String[] getAllImageId(){
-		return imageDAO.getAllImgIds();
+		return (String[])imageDAO.getAllImgIds().toArray();
 	}
 	
 	public String[] getAllImageUris(){
-		return imageDAO.getAllImgUris();
+		return (String[])imageDAO.getAllImgUris().toArray();
 	}
 
 }

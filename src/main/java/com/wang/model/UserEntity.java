@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.Resource;
+
 import com.wang.service.UserEntityService;
 
 public class UserEntity {
@@ -16,6 +18,9 @@ public class UserEntity {
     //对friendsId friendsIcons做冗余
     private Map<String, String> friendMap = new HashMap<String, String>();
 
+    @Resource
+    private UserEntityService userEntityService;
+    
     public UserEntity(String userId){
     	//TODO 
     	//数据库获得数据
@@ -48,8 +53,7 @@ public class UserEntity {
     public UserEntity(){};
 
     public UserEntity getUserEntity(String id){
-    	UserEntityService userEntityService = new UserEntityService();
-    	return (UserEntity) userEntityService.get(id);
+    	return userEntityService.get(id);
     }
     
 	public String getUserId() {

@@ -92,7 +92,7 @@
 		<property name="mapperLocations" value="classpath:com/wang/mapper/*.xml"></property>
 	</bean>  
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.wang.bean, com.wang.dao"></property>
+		<property name="basePackage" value="com.wang.bean,com.wang.dao"></property>
 		<property name="sqlSessionFactoryBeanName" value="sessionFactory"></property>
 	</bean>
 	

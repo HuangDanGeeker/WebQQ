@@ -12,4 +12,9 @@ public interface IChatRecordDAO{
 	
 	public void addItem(@Param("dbName")String dbName, @Param("srcId")String srcId, @Param("dstId")String dstId, @Param("content")String content, @Param("timestamp")String timestamp);
 
+	public void addUnreadItem(@Param("dbName")String dbName, @Param("srcId")String srcId, @Param("content")String content, @Param("timestamp")String timestamp);
+	
+	public List<ChatRecordItem> getUnreachRecordItems(@Param("dbName")String dbName);
+	
+	public void deleteUnreachRecordItems(@Param("dbName")String dbName);
 }

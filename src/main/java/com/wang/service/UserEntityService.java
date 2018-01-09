@@ -22,7 +22,7 @@ public class UserEntityService{
 	@Resource
 	private FriendService friendListService;
 
-	public Object get(String id) {
+	public UserEntity get(String id) {
 		
 		User user = userService.get(id);
 		UserEntity userEntity = new UserEntity();

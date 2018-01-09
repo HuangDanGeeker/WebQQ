@@ -8,8 +8,9 @@
 		<result column="content" property="content" jdbcType="VARCHAR"/>
 		<result column="timestamp" property="timeStamp" jdbcType="VARCHAR"/>
 	</resultMap>
+
 	
-	<select id="getItems" resultMap="ChatRecordMap" 
+	<select id="getItems" resultMap="RecordItemMap" 
 		parameterType="String" statementType="STATEMENT">
 		select * from ${dbName} 
 		order by timestamp desc limit ${startNum}, ${endNum}
@@ -19,5 +20,14 @@
 		insert into ${dbName} values(#{srcId}, #{dstId}， #{content}, #{timestamp})
 	</insert>
 	
+	
+	//可能RecordItemMap不适用 缺少dstId
+	<select id="getUnreachRecordItems" resultMap="RecordItemMap">
+		select * from ${dbName}
+	</select>
+	
+	<delete id="deleteUnreachRecordItems">
+		delete from ${dbName}
+	</delete>
 	
 </mapper>

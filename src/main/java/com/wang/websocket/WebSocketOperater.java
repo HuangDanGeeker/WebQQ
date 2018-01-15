@@ -4,9 +4,12 @@ import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import javax.annotation.Resource;
 import javax.websocket.*;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
+
+import org.springframework.stereotype.Service;
 
 import net.sf.json.JSONObject;
 
@@ -15,9 +18,11 @@ import com.wang.service.UnreachHistoryService;
 
 
 @ServerEndpoint("/websocket")
+@Service
 public class WebSocketOperater {
 
-	private UnreachHistoryService unreachHistoryService = new UnreachHistoryService();
+	@Resource
+	private UnreachHistoryService unreachHistoryService;
 	private SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 	private ParsePosition pos = new ParsePosition(8);
 	

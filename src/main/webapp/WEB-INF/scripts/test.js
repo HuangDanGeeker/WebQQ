@@ -8,6 +8,7 @@ var recodeFlag = 10;
 var flash = [];
 window.onload = function () {
 	emojiInit();
+	
 	$('#signBtn').click(function(){
 		$.ajax({
 	        url:"http://localhost:8080/SpringMVC/apply",
@@ -126,7 +127,8 @@ window.onload = function () {
     }
 
     
-    document.getElementById('opts').onclick = function () {
+    document.getElementById('optsDiv').onclick = function () {
+    	interactiveImg('opts');
         $("#optsDialog").css("display", 'block');
         $("#dialog").css("display", 'none');
 
@@ -186,7 +188,7 @@ window.onload = function () {
     }
 
     document.getElementById('friendList').onclick = function () {
-    
+    	interactiveImg("contact");
     	$('#list_content_friend').css("display", "inline-table");
     	$('#list_content_talk').css("display", "none");
     	$('#list_content_selfInfo').css("display", "none");
@@ -219,7 +221,7 @@ window.onload = function () {
     };
 
     document.getElementById('chatList').onclick = function (chatList) {
-
+    	interactiveImg("conversation");
     	$('#list_content_talk').css("display", "inline-table");
     	$('#list_content_friend').css("display", "none");
     	$('#list_content_selfInfo').css("display", "none");
@@ -384,6 +386,7 @@ function startWS(userId) {
     });
 
     $('#iconDiv').click(function(){
+    	interactiveImg("");
     	$('#list_content_selfInfo').css("display", "inline-table");
         $('#list_content_talk').css("display", "none");
         $('#list_content_friend').css("display", "none");

@@ -10,35 +10,40 @@
     color: #fff;
     display: block;
     padding-top: 200px;
+    z-index:2;
 
 }
 #wrapper > input{
 	font-size: 18px;
 }
 #main{
-	height: 100%;
+	position: fixed;
+	top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index:1;
     background-image:url("http://localhost:8080/SpringMVC/images/MainBackground1.jpg");
     background-repeat: repeat;
 }
 
-#icon{
-	
-	width:100%;
-	height:100%;
-}
+
 
 #iconDiv{
-
-	 /*
-	 width:50px;
-	 */ 
+ 
 	 height:50px; 
-	 float: left;
-	 border-radius: 5px 5px 5px 5px; 
- 	 border: 1px solid #222;
-	
+	 margin-left:1%;
 }
 
+#icon{
+	
+	
+	height:100%;
+	width: 100%;
+	border-radius: 5px 5px 5px 5px; 
+ 	border: 1px solid #222;
+ 	padding-left: 4%;
+}
 
 #list{
 	 
@@ -87,12 +92,13 @@
 	background-color: #E0E0E0; 
 	padding: 0 0; 
 	overflow-y:auto;
-	opacity: 0.7;
+	opacity: 0.8;
 	font-size: 18px;
 }
 
 #list_content_selfInfo > div{
 	margin-left: 2%;
+	opacity: 1;
 }
 
 #selfAge{
@@ -104,6 +110,7 @@
 }
 
 #rewriteSelfInfoBtn{
+	font-color:black;
 	margin:1% auto;
 	border-radius: 2px 2px;
 }
@@ -126,14 +133,13 @@
 	background-color: #3A3A3A; 
 	border-radius: 0 0 0 5px ;
 	text-align:center;
-	border-right: 1px solid #222;
-	border-left: 1px solid #555;
+	line-height:60px;
 }
 
 #chatList img{
-	width: 30%; 
-	height: 30%;
-	margin-top:0;
+	width: 40%; 
+	height: 40%;
+	margin: 0 auto;
 	padding-top:0;
 }
 
@@ -144,19 +150,20 @@
 	display:inline-table; 
 	background-color: #3A3A3A;
 	text-align:center;
-	border-right: 1px solid #222;
-	border-left: 1px solid #555;
+	line-height:60px;
 }
 
 #friendList img{
-	width: 30%; 
-	height: 30%;
+	width: 40%; 
+	height: 40%;
+	margin: 0 auto;
 }
 
 .list-friend{
 	height: 45px; 
 	background-color: #787878;
 	border: 1px solid #222;
+	
 }
 
 .list-talk{
@@ -176,20 +183,20 @@
 	border-radius: 2px 2px; 
 	
 }
-#opts{
+#optsDiv{
 	width: 30%; 
 	height:60px; 
 	padding: 0 0; 
 	display:inline-table; 
 	background-color: #3A3A3A;
 	text-align:center;
-	border-right: 1px solid #222;
-	border-left: 1px solid #555;
+	line-height:60px;
 }
 
-#opts img{
-	width: 30%; 
-	height: 30%;
+#optsDiv img{
+	width: 40%; 
+	height: 40%;
+	margin:0 auto;
 }
 
 #dialog{
@@ -207,7 +214,7 @@
 }
 
 #friendName{
-	height: 10%; 
+	height: 6%; 
 	background-color: #3A3A3A;
 	text-align: center;
 	line-height: 100%;
@@ -276,7 +283,8 @@
 }
 
 #talkTools{
-	height: 10%; background-color: #3A3A3A;
+	height: 10%; 
+	background-color: #3A3A3A;
 }
 
 #emojiTools{
@@ -311,32 +319,16 @@
 
 }
 
-#MsgRecordBtn{
-	float: left; 
-	width: 12%; 
-	height: 100%; 
-	background-color: #3A3A3A;
-}
-
-#MsgRecordBtn img{
-	width: 130%;
-	height: 120%;
-}
 
 #optsDialog{
 	display:none; 
-	/*
-	width: 40%;
-	*/ 
-	height: 500px; 
+	height: 600px; 
 	background-color: #E0E0E0; 
 	float: left; 
 	margin-top:5px; 
-	/*
-	padding: 10px 0; 
-	*/
 	border-radius: 5px; 
 	font-size: 18px;
+	overflow-y:auto; 
 }
 #changeIcon{
 	width:100px;
@@ -431,22 +423,13 @@
 }
 
 #resignAccountDiv{
-	height: 50px; 
-	display: none;
+	height: 60px; 
+	line-height: 60px;
 	background-color: #787878;
-	border-radius:5px 5px;
 }
 
 #resignBtn{
-	margin:100px auto;
-	width:20%; 
-	height:100%; 
-	background-color: #3A3A3A;
-	border-radius: 5px 5px;
-	color:white;
-	font-size:20px;
-	text-align:center;
-	line-height: 50px;
+	margin:0 auto;
 }
 
 

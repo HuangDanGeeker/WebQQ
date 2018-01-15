@@ -12,6 +12,7 @@
 	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
+<script src="../SpringMVC/scripts/ui.js" type="text/javascript"></script>
 <script src="../SpringMVC/scripts/test.js" type="text/javascript"></script>
 <script src="../SpringMVC/scripts/emojiInit.js" type="text/javascript"></script>
 <script src="../SpringMVC/scripts/indexedDB.js" type="text/javascript"></script>
@@ -27,48 +28,51 @@
 </div>
 </div>
 <div class="container_fluid">
-<div class="row " id="main">
+<div class="row" id="main">
 
 <div id="iconDiv" class="col-md-1"><img id="icon" src=""  onerror="this.src='./images/defaultIcon.jpg'"></div>
 <div id="list" class="col-md-3">
 <div id="list_header" class="text-center"></div>
 <div id="list_content_friend">
-    list_content_friend
     
 </div>
 <div id="list_content_talk" >
-    list_content_talk
    
     
 </div>
-<div id="list_content_selfInfo" >
-   <br>
+<div id="list_content_selfInfo" style="padding-left:2%; padding-top:1%;">
+<form role="form">
    <div id="selfId"></div><br>
-   <div >sex : <select id="selfSex" style="font-size:16px;"> 
+   <div class="form-group"><label for="selfsex">sex</label>
+   		<select class="for-control" id="selfSex" style="font-size:16px;"> 
     		<option value="0">man</option> 
     		<option value="1">woman</option> 
-    			  </select> 
-	</div><br>
-   <div >age : <input type="text" id="selfAge"/></div><br>
-   <div >signature : <textarea cols="26" rows="3" id="selfSignature" ></textarea></div><br>
-   <div style="width:100%;"><input type="submit" id="rewriteSelfInfoBtn" value="保存更改"></div>
+	    </select> 
+   </div>
+   <div class="form-group">
+   		<label for="selfAge">age</label>
+   		<input type="text" id="form-control" id="selfAge"/>
+   	</div>
+   <div >
+   		<label for="selfSignature">signature</label>
+   		<textarea clss="form-control" cols="26" rows="3" id="selfSignature" ></textarea>
+   </div><br>
+   <div style="width:100%; text-align:center;"><input type="submit" class="btn btn-info" id="rewriteSelfInfoBtn" value="保存更改"></div>
+</form>
 </div>
 <div id="list_footer" > 
-    <div id="chatList" ><img  src="./images/tab_icon_conversation.png" ><div>会话</div></div>
-    <div id="friendList"> <img src="./images/tab_icon_contact.png" ><br>好友</div>
-    <div id="opts"> <img src="./images/tab_icon_setup.png" ><br>设置</div>
+    <div id="chatList" ><img  id="conversation" src="./images/tab_icon_conversation.png" ></div>
+    <div id="friendList"> <img id="contact" src="./images/tab_icon_contact.png" ></div>
+    <div id="optsDiv"> <img id="opts" src="./images/tab_icon_setup.png" ></div>
 </div>
 </div>
 
 <div id="dialog" class="col-md-4">
     <div id="friendName" ></div>
-    <div style="height: 80%; background-color: black;">
+    <div style="height: 84%; background-color: black;">
         <div id="talkContent" >
-            <!-- TODO 添加头像 -->
-            <div class="leftBob" style=" "><img src=""><font >1233213</font></div>
-            <div class="rightBob" ><font >1233213</font><img src=""></div>
         </div>
-        <div id="emojiContent" >
+        <div id="emojiContent" class="pre-scrollable">
         	<ul class="emoji-list">
            
 		      <li>&#x1F600;</li>
@@ -101,6 +105,7 @@
 		      <li>&#x1F61B;</li>
 		      <li>&#x1F61C;</li>
 		      <li>&#x1F61D;</li>
+		      <li>&#x1F61E;</li>
 		      <li>&#x1F61E;</li>
 		      <li>&#x1F61F;</li>
 		      <li>&#x1F620;</li>
@@ -145,14 +150,14 @@
     <div id="talkTools" >
         <div  id="emojiTools"><img src="./images/chat_bottombar_icon_face.png"></div>
         
-        <div style=" width:55%; height:100%; float: left; padding: 4px 8px; line-height: 100%;" class="form-group"><input type="textarea"   wrap="virtual" id="chatMsg"></div>
+        <div style=" width:55%; height:100%; float: left; padding: 4px 8px; line-height: 100%;" class="form-group"><input type="textarea" wrap="virtual" id="chatMsg"></div>
         <div style="margin-top: 1%; width:15%; height:85%; float: left; padding: 4px 8px;"><button  class="btn  btn-info" id="sendBtn" type="button">send</button></div>
-        <div  id="MsgRecordBtn"><img class="img-round" src="./images/record.jpg"></div>
+        <div style="margin-top: 1%; width:10%; height:85%; float: left; padding: 4px 8px;"  id="MsgRecordBtn" ><button type="button" class="btn btn-info">Record</button></div>
     </div>
     <div></div>
 
 </div>
-<div id="optsDialog" class="col-md-4">
+<div id="optsDialog" class="col-md-4 pre-scrollable">
 <div class="panel-group" id="optsPanels">
 	<div class="panel panel-default">
 		<div class="panel-heading">
@@ -170,11 +175,12 @@
     </div>
     <div id="deleteFriendsDiv" class="panel-collapse collapse">
     	<div class="panel-body">
-		    <p id="deleteFriendInfo" ></p>
-		    <form style="margin-left:2%;">
-		        请输入好友账号:<input type="text" id="deleteFriendId" value="abc" /><br><br>
-		        <input type="checkbox" id="fullDelete" value="1">同时在对方好友列表中删除<br><br>
-		        <button type="button" onclick="deleteFriend()" >确认删除</button>
+		    <h4><p id="deleteFriendInfo" class="label label-warning"></p></h4>
+		    <form style="margin-left:2%;" role="form">
+		        <label for="deleteFriendId">请输入好友账号</label>
+		        <input type="text" id="deleteFriendId" class="form-control" value="abc" />
+		        <input type="checkbox" id="fullDelete" value="1"><label for="fullDelete">同时在对方好友列表中删除</label>
+		        <div style="text-align:center"><button type="button" class="btn btn-warning" onclick="deleteFriend()" >确认删除</button></div>
 		    </form>
 	    </div>
     </div>
@@ -187,22 +193,23 @@
     
     <div id="addFriendsDiv" class="panel-collapse collapse">
     	<div class="panel-body">
-		    <p id="addFriendInfo" ></p>
-		    <form>
-		        请输入要添加的好友账号：<input type="text" id="addFriendId" value="1231321312" /><br><br>
-		        <button type="button" class="btn btn-info" onclick="addFriend()">确认添加</button>
+		    <h4><p id="addFriendInfo" class="label label-warning"></p></h4>
+		    <form role="form">
+		        <label for="addFriendId">请输入要添加的好友账号</label>
+		        <input id="addFriendId" type="text" class="form-control" value="1231321312" /><br>
+		        <div style="text-align:center;"><button type="button" class="btn btn-info" onclick="addFriend()">确认添加</button></div>
 		    </form>
 	    </div>
 	</div>
 
 	<div class="panel panel-default">
 		<div class="panel-heading">
-    		<h4><a id="resignAccount" href="#resignAccountDiv">注销账号</a><br></h4>
+    		<h4 class="panel-title"><a id="resignAccount" href="#resignAccountDiv">注销账号</a><br></h4>
     	</div>
     </div>
     <div id="resignAccountDiv" class="panel-collapse collapse">
-    	<div class="panel-body">
-    		<button type="button" class="btn btn-info" id="resignBtn" >注销</button>
+    	<div class="panel-body" style="text-align:center; line-height:100%;">
+    		<button type="button" class="btn btn-danger" id="resignBtn" >注销</button>
     	</div>
     </div>
 </div>

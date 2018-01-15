@@ -38,6 +38,7 @@ public class HelloController {
 	@RequestMapping("/m")
 	@ResponseBody
 	public String test(){
+		System.out.println("m");
 //		Friend f = friendService.getFriend("123", "kun");
 		
 //		List<Friend> friends = friendService.getAllFriends("123");
@@ -46,7 +47,8 @@ public class HelloController {
 //		}
 //		friendService.deleteFriend("123", "kun");
 		friendService.addFriend("123", "111111", "111111111");
-		return "";
+		System.out.println("m");
+		return "mmmmmm";
 		
 	}
 }  

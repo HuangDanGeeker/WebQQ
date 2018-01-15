@@ -21,7 +21,7 @@
 	</insert>
 	
 	
-	//可能RecordItemMap不适用 缺少dstId
+	<!-- 可能RecordItemMap不适用 缺少dstId  -->
 	<select id="getUnreachRecordItems" resultMap="RecordItemMap">
 		select * from ${dbName}
 	</select>

@@ -1,18 +1,8 @@
 package com.wang.dao;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.List;
-
 import org.apache.ibatis.annotations.Param;
-
-import com.sun.org.glassfish.gmbal.ParameterNames;
-import com.wang.DBConnection.MySqlConnection;
 import com.wang.bean.User;
-import com.wang.model.IconImageModel;
-import com.wang.service.ImageService;
 
 public interface IUserDAO{
 

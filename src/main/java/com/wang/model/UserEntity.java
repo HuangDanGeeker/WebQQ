@@ -1,13 +1,15 @@
 package com.wang.model;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.springframework.stereotype.Component;
+
 import com.wang.service.UserEntityService;
 
+@Component
 public class UserEntity {
     private String userId;
     private String[] friendsId;
@@ -19,7 +21,7 @@ public class UserEntity {
     private Map<String, String> friendMap = new HashMap<String, String>();
 
     @Resource
-    private UserEntityService userEntityService;
+    private UserEntityService userEntityService = new UserEntityService();
     
     public UserEntity(String userId){
     	//TODO 

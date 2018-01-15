@@ -1,21 +1,7 @@
 package com.wang.dao;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.HibernateException;
-import org.hibernate.SQLQuery;
-import org.hibernate.Session;
-import org.springframework.jdbc.object.SqlQuery;
-import org.springframework.orm.hibernate4.HibernateCallback;
-
-import com.sun.org.apache.bcel.internal.generic.RETURN;
-import com.wang.DBConnection.MySqlConnection;
-import com.wang.bean.ChatRecordItem;
 import com.wang.model.IconImageModel;
 
 public interface IImageDAO{

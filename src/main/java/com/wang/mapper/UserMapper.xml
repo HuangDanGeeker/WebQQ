@@ -3,8 +3,8 @@
   
 <mapper namespace="com.wang.dao.IUserDAO">
 	<resultMap id="UserMap" type="com.wang.bean.User">
-		<result column="id" property="srcId" jdbcType="VARCHAR"/>
-		<result column="imageUri" property="iamgeUri" jdbcType="VARCHAR"/>
+		<result column="id" property="id" jdbcType="VARCHAR"/>
+		<result column="imageUri" property="imageUri" jdbcType="VARCHAR"/>
 		<result column="sex" property="sex" jdbcType="VARCHAR"/>
 		<result column="signature" property="signature" jdbcType="VARCHAR"/>
 		<result column="age" property="age" jdbcType="INTEGER"/>

@@ -8,8 +8,6 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
-import net.sf.json.JSONObject;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,12 +20,12 @@ import com.wang.bean.User;
 import com.wang.model.HistoryEntity;
 import com.wang.model.HistoryModel;
 import com.wang.model.IconImageModel;
-import com.wang.model.Person;
 import com.wang.model.UserEntity;
 import com.wang.service.ChatRecordService;
 import com.wang.service.FriendService;
 import com.wang.service.ImageService;
 import com.wang.service.UnreachHistoryService;
+import com.wang.service.UserEntityService;
 import com.wang.service.UserService;
 
 @Controller
@@ -42,6 +40,12 @@ public class Restfull {
 	private ChatRecordService chatRecordService;
 	@Resource
 	private ImageService imageService;
+	@Resource
+	private UserEntityService userEntityService;
+	@Resource
+	private UnreachHistoryService unreachHistoryService;
+	@Resource
+	private ImageService imgeService;
 	
 	
 	@RequestMapping(value="/apply", method=RequestMethod.GET)
@@ -59,7 +63,7 @@ public class Restfull {
 		
 		System.out.println("xml http request arrived");
 		//TODO
-		return new UserEntity().getUserEntity(userId);
+		return userEntityService.get(userId);
 	}
 	
 	
@@ -119,20 +123,8 @@ public class Restfull {
 	public Map<String, List<HistoryEntity>> history(@PathVariable String userId){
 		System.out.println("/history/{userId}");		
 		System.out.println("userID " + userId);		
+		return unreachHistoryService.getUnreachHistory(userId);
 
-		//TODO
-		return new UnreachHistoryService().getUnreachHistory(userId);
-
-	}
-	
-	@RequestMapping(value="/queryIcon/{Id}", method=RequestMethod.GET)
-	@ResponseBody
-	public String queryIcon(@PathVariable String Id){
-		System.out.println("=====> queryIcon");		
-		System.out.println("userID " + Id);		
-
-		//TODO 数据库查询
-		return "http://localhost:8080/SpringMVC/images/defaultIcon.jpg";
 	}
 	
 	@RequestMapping(value="/queryIcon", method=RequestMethod.GET)
@@ -140,8 +132,6 @@ public class Restfull {
 	public Map<String, Object> querDefaultyIcon(){
 		System.out.println("=====> queryDefaultIcon");		
 		
-		//TODO 数据库查询
-		//TEST
 		Map<String, Object> map = new HashMap<String, Object>();
 		List<IconImageModel> list = imageService.getAllImgs();
 //		list.add(new IconImageModel("imageId1", "http://localhost:8080/SpringMVC/images/defaultIcon.jpg"));

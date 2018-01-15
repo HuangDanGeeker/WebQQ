@@ -1,16 +1,10 @@
 package com.wang.bean;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
-@Entity
-@Table
 public class User {
 
-	@Id
+
 	public String id;
-	
 	public String imageUri;
 	public String sex;
 	public int age;

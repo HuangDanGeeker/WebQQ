@@ -2,22 +2,21 @@ package com.wang.service;
 
 import java.util.List;
 
-import com.wang.dao.ImageDAO;
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
+import com.wang.dao.IImageDAO;
 import com.wang.model.IconImageModel;
 
-public class ImageService implements IService{
+@Service("ImageService")
+public class ImageService{
 
-	private ImageDAO imageDAO = new ImageDAO();
+	@Resource
+	private IImageDAO imageDAO;
 	
-	@Override
-	public IconImageModel get(String id) {
-		List<IconImageModel> list = imageDAO.getImageEntityList();
-		for(IconImageModel item : list){
-			if(item.getIconId().equalsIgnoreCase(id)){
-				return item;
-			}
-		}
-		return null;
+	public IconImageModel getImg(String imgeId) {
+		return imageDAO.getImg(imgeId);
 	}
 	
 	public boolean updateUserImage(String id, String imageUri){
@@ -25,23 +24,21 @@ public class ImageService implements IService{
 		
 	}
 	
-	@Override
-	public List<IconImageModel> getAll() {
-		return imageDAO.getImageEntityList();
+	public List<IconImageModel> getAllImgs() {
+		return imageDAO.getAllImgs();
 	}
 
-	@Override
 	public boolean delete(String id) {
-		imageDAO.delete(id);
+		imageDAO.deleteImg(id);
 		return true;
 	}
 
 	public String[] getAllImageId(){
-		return imageDAO.getAllId();
+		return (String[])imageDAO.getAllImgIds().toArray();
 	}
 	
 	public String[] getAllImageUris(){
-		return imageDAO.getAllUri();
+		return (String[])imageDAO.getAllImgUris().toArray();
 	}
 
 }

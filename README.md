@@ -1,5 +1,7 @@
 #Web QQ 模拟
 
+<label>build status: <label style=" background-color:#48C21A;border-radius:3 3">MyBatis整合结束</label></label>
+
 ### 运行环境
 - firefox
 - JDK 1.8

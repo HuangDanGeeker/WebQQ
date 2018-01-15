@@ -1,6 +1,5 @@
 package com.wang.model;
 
-import java.util.Date;
 
 public class HistoryEntity {
 

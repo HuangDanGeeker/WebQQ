@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import net.sf.json.JSONObject;
+import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,26 +20,39 @@ import com.wang.bean.User;
 import com.wang.model.HistoryEntity;
 import com.wang.model.HistoryModel;
 import com.wang.model.IconImageModel;
-import com.wang.model.Person;
 import com.wang.model.UserEntity;
 import com.wang.service.ChatRecordService;
 import com.wang.service.FriendService;
 import com.wang.service.ImageService;
 import com.wang.service.UnreachHistoryService;
+import com.wang.service.UserEntityService;
 import com.wang.service.UserService;
 
 @Controller
 
 public class Restfull {
 
+	@Resource
+	private UserService userService;
+	@Resource
+	private FriendService friendService;
+	@Resource
+	private ChatRecordService chatRecordService;
+	@Resource
+	private ImageService imageService;
+	@Resource
+	private UserEntityService userEntityService;
+	@Resource
+	private UnreachHistoryService unreachHistoryService;
+	@Resource
+	private ImageService imgeService;
+	
 	
 	@RequestMapping(value="/apply", method=RequestMethod.GET)
 	@ResponseBody
 	public String apply(){
 		System.out.println("apply");		
 	
-		UserService userService = new UserService();
-		
 		return userService.applyAccount();
 	}
 	
@@ -49,10 +62,11 @@ public class Restfull {
 	public UserEntity checkUserExist(@PathVariable String userId){
 		
 		System.out.println("xml http request arrived");
-		return new UserEntity().getUserEntity(userId);
+		//TODO
+		return userEntityService.get(userId);
 	}
 	
-	//TEST
+	
 	@RequestMapping(value="/test",produces="text/html;charset=UTF-8")
 	@ResponseBody
 	public String test(){
@@ -68,7 +82,6 @@ public class Restfull {
 		System.out.println("friendId " + friendId);		
 		System.out.println("fullDelete " + fullDelete);		
 
-		FriendService friendService = new FriendService();
 		friendService.deleteFriend(userId, friendId);
 		if(fullDelete.equalsIgnoreCase("true")){
 			friendService.deleteFriend(friendId, userId);
@@ -88,8 +101,7 @@ public class Restfull {
 		Map<String, Object> map = new HashMap<String, Object>();
 		List<HistoryEntity> list = new ArrayList<HistoryEntity>();
 		
-		ChatRecordService service = new ChatRecordService();
-		List<ChatRecordItem> chatRecordList = service.getItem(userId, friendId, num);
+		List<ChatRecordItem> chatRecordList = chatRecordService.getItem(userId, friendId, num);
 		ChatRecordItem chatRecordItem;
 		for(int i = 0; i < chatRecordList.size(); i++){
 			chatRecordItem = chatRecordList.get(i);
@@ -111,31 +123,17 @@ public class Restfull {
 	public Map<String, List<HistoryEntity>> history(@PathVariable String userId){
 		System.out.println("/history/{userId}");		
 		System.out.println("userID " + userId);		
+		return unreachHistoryService.getUnreachHistory(userId);
 
-		return new UnreachHistoryService().getUnreachHistory(userId);
-
-	}
-	
-	@RequestMapping(value="/queryIcon/{Id}", method=RequestMethod.GET)
-	@ResponseBody
-	public String queryIcon(@PathVariable String Id){
-		System.out.println("=====> queryIcon");		
-		System.out.println("userID " + Id);		
-
-		//TODO 数据库查询
-		return "http://localhost:8080/SpringMVC/images/defaultIcon.jpg";
 	}
 	
 	@RequestMapping(value="/queryIcon", method=RequestMethod.GET)
 	@ResponseBody
 	public Map<String, Object> querDefaultyIcon(){
 		System.out.println("=====> queryDefaultIcon");		
-	
-		//TODO 数据库查询
-		//TEST
+		
 		Map<String, Object> map = new HashMap<String, Object>();
-		ImageService imageService = new ImageService();
-		List<IconImageModel> list = imageService.getAll();
+		List<IconImageModel> list = imageService.getAllImgs();
 //		list.add(new IconImageModel("imageId1", "http://localhost:8080/SpringMVC/images/defaultIcon.jpg"));
 		map.put("IconImages", list);
 		return map;
@@ -149,7 +147,6 @@ public class Restfull {
 		System.out.println("userID " + Id);		
 		System.out.println("imageId " + imageUri);		
 	
-		ImageService imageService = new ImageService();
 		imageService.updateUserImage(Id, "http://localhost:8080/SpringMVC/images/"+imageUri+".jpg");
 		
 		return "true";
@@ -161,7 +158,6 @@ public class Restfull {
 		System.out.println("=====> /querySelf/{userId}");		
 		System.out.println("userID " + userId);		
 	
-		UserService userService = new UserService();
 		User user = userService.get(userId);
 		return user.toString();
 			
@@ -173,7 +169,6 @@ public class Restfull {
 		System.out.println("/uploadHistory");		
 	
 		System.out.println(user.toString());
-		UserService userService = new UserService();
 		userService.update(user);
 		return "";
 	}
@@ -184,7 +179,6 @@ public class Restfull {
 		System.out.println("=====> queryUser");		
 		System.out.println("userID " + id);		
 	
-		UserService userService = new UserService();
 		if(userService.isExist(friendId)){
 			User user = userService.get(friendId);
 			userService.addFriend(id, friendId);
@@ -203,7 +197,6 @@ public class Restfull {
 		System.out.println(models + ":" + models.length);
 //		System.out.println(models.toString());
 		
-		ChatRecordService chatRecordService = new ChatRecordService();
 		for(int i = 0; i < models.length; i++){
 			System.out.println(models[i].toString());
 			chatRecordService.addItem(models[i].getFrom(), models[i].getTo(), models[i].getContent().replace('\'', '"'), models[i].getTimestamp());

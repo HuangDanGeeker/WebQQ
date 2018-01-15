@@ -1,44 +1,40 @@
 package com.wang.service;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import com.wang.DBConnection.MySqlConnection;
+import javax.annotation.Resource;
+import org.springframework.stereotype.Service;
+import com.wang.bean.ChatRecordItem;
 import com.wang.bean.Friend;
+import com.wang.dao.IChatRecordDAO;
 import com.wang.model.HistoryEntity;
 
+
+@Service
 public class UnreachHistoryService{
 
+	@Resource
+	private FriendService friendListService;
+	@Resource
+	private IChatRecordDAO chatRecordDAO;
 	
 	public Map<String,List<HistoryEntity>> getUnreachHistory(String id){
-		FriendService friendListService = new FriendService();
-		List<Friend> friendList = friendListService.getAllFriend(id);
+		List<Friend> friendList = friendListService.getAllFriends(id);
 		Map<String, List<HistoryEntity>> map = new HashMap<String, List<HistoryEntity>>();
 		for(Friend f : friendList){
 			map.put(f.getFriendId(), new ArrayList<HistoryEntity>());
 		}
+		
 		List<HistoryEntity> listOfHstryEntity = new ArrayList<HistoryEntity>();
-		MySqlConnection mySqlConnection = MySqlConnection.getInstance();
-		Connection connection = mySqlConnection.getConnection();
-		try {
-			Statement statement = connection.createStatement();
-			ResultSet resultSet = statement.executeQuery("select * from history_" + id);
-			while (resultSet.next()) {
-				listOfHstryEntity = map.get(resultSet.getString(1));
-				listOfHstryEntity.add(new HistoryEntity("1", resultSet.getString(2)));
-				map.put(resultSet.getString(1), listOfHstryEntity);
-            }
-			statement.execute("delete from history_"+ id);
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return null;
+		List<ChatRecordItem> unReadRecordItems = chatRecordDAO.getUnreachRecordItems("history_"+id);
+		for(ChatRecordItem item : unReadRecordItems){
+			listOfHstryEntity = map.get(item.getSrcId());
+			listOfHstryEntity.add(new HistoryEntity("1", item.getContent()));
+			map.put(item.getSrcId(), listOfHstryEntity);
 		}
+		chatRecordDAO.deleteUnreachRecordItems("history_"+id);
 		
 		return map;
 	}
@@ -46,15 +42,8 @@ public class UnreachHistoryService{
 	
 	
 	public boolean addUnreachHistory(String srcId, String dstId, String content, String timestamp){
-		MySqlConnection mySqlConnection = MySqlConnection.getInstance();
-		Connection connection = mySqlConnection.getConnection();
-		try {
-			Statement statement = connection.createStatement();
-			statement.execute("insert into history_" + dstId +" values('"+srcId+"', '"+content+"', '"+timestamp+"')");
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return false;
-		}
+
+		chatRecordDAO.addUnreadItem("history_"+dstId, srcId, content, timestamp);
 		
 		return true;
 	}

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+  
+<mapper namespace="com.wang.dao.IChatRecordDAO">
+	<resultMap id="RecordItemMap" type="com.wang.bean.ChatRecordItem">
+		<result column="srcId" property="srcId" jdbcType="VARCHAR"/>
+		<result column="dstId" property="dstId" jdbcType="VARCHAR"/>
+		<result column="content" property="content" jdbcType="VARCHAR"/>
+		<result column="timestamp" property="timeStamp" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	
+	<select id="getItems" resultMap="RecordItemMap" 
+		parameterType="String" statementType="STATEMENT">
+		select * from ${dbName} 
+		order by timestamp desc limit ${startNum}, ${endNum}
+	</select>
+	
+	<insert id="addItem">
+		insert into ${dbName} values(#{srcId}, #{dstId}， #{content}, #{timestamp})
+	</insert>
+	
+	
+	<!-- 可能RecordItemMap不适用 缺少dstId  -->
+	<select id="getUnreachRecordItems" resultMap="RecordItemMap">
+		select * from ${dbName}
+	</select>
+	
+	<delete id="deleteUnreachRecordItems">
+		delete from ${dbName}
+	</delete>
+	
+</mapper>

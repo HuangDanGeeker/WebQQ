@@ -37,39 +37,66 @@
                              
                              > 
 
+	<context:annotation-config/>  
 
-   
-  
-          
-  
-         <context:annotation-config/>  
-  
-         <context:component-scan base-package="com.wang" >
-			<!-- 只扫描controller -->
-    		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
-    	 </context:component-scan>  
-  
-  			<!-- 允许对静态资源文件的访问 -->   
-			<mvc:default-servlet-handler /> 
-  
-         <mvc:annotation-driven />  
-  
-         <mvc:resources mapping="/styles/**" location="/WEB-INF/styles/" />  
-  
-         <mvc:resources mapping="/scripts/**" location="/WEB-INF/scripts/" />  
-  
-         <mvc:resources mapping="/images/**" location="/WEB-INF/images/" />  
-  
-   		 <mvc:resources mapping="/twemoji2/**" location="/WEB-INF/twemoji2/" />  
-  
-         <bean  
-  
-              class="org.springframework.web.servlet.view.InternalResourceViewResolver">  
+    <context:component-scan base-package="com.wang" >
+		<!-- 只扫描controller -->
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Repository" />
+	 </context:component-scan>  
 
-              <property name="prefix" value="/WEB-INF/views/" />  
+	<!-- 允许对静态资源文件的访问 -->   
+	<mvc:default-servlet-handler /> 
 
-              <property name="suffix" value=".jsp" />  
-  
-         </bean>  
-  
+    <mvc:annotation-driven />  
+
+    <mvc:resources mapping="/styles/**" location="/WEB-INF/styles/" />  
+
+    <mvc:resources mapping="/scripts/**" location="/WEB-INF/scripts/" />  
+
+    <mvc:resources mapping="/images/**" location="/WEB-INF/images/" />  
+
+ 	<mvc:resources mapping="/twemoji2/**" location="/WEB-INF/twemoji2/" />  
+
+    <bean  
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">  
+
+         <property name="prefix" value="/WEB-INF/views/" />  
+
+         <property name="suffix" value=".jsp" />  
+
+    </bean> 
+     
+    <bean id="propertyConfigurer"
+     	class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+   		<property name="location" value="classpath:configs/DB.properties"></property>
+   	</bean>
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+    	 <property name="driverClassName" value="${driverClass}"></property>
+    	 <property name="url" value="${url}"></property>
+    	 <property name="username" value="${user}"></property>
+    	 <property name="password" value="${password}"></property>
+    	 <property name="initialSize" value="${initalSize}"></property>
+    	 <!-- 连接池最大数量 -->  
+         <property name="maxActive" value="${maxActive}"></property>  
+         <!-- 连接池最大空闲 -->  
+         <property name="maxIdle" value="${maxIdle}"></property>  
+         <!-- 连接池最小空闲 -->  
+         <property name="minIdle" value="${minIdle}"></property>  
+         <!-- 获取连接最大等待时间 -->  
+         <property name="maxWait" value="${maxWait}"></property>  
+    </bean>
+	<bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="mapperLocations" value="classpath:com/wang/mapper/*.xml"></property>
+	</bean>  
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.wang.bean,com.wang.dao"></property>
+		<property name="sqlSessionFactoryBeanName" value="sessionFactory"></property>
+	</bean>
+	
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
 </beans>  

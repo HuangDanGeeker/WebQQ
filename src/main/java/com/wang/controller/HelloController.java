@@ -17,7 +17,7 @@ public class HelloController {
 		System.out.println("hello");
 		 ModelAndView mv = new ModelAndView();  
 		 //mv.addObject("spring", "spring mvc");  
-         mv.setViewName("test");  
+         mv.setViewName("test_bootstrap");  
          return mv;
   
      }   

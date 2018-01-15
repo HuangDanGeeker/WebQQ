@@ -207,7 +207,7 @@
     </div>
 </div>
 </div>
-<!--  <div style="width:2%; height: 510px; float: left;"></div>-->
+
 <div id="recordDialog" class="col-md-4">
     <div id="MsgRecordDiv" sytle="height:90%;"></div>
     <div style="height:10%">

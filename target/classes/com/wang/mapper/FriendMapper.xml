@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+  
+<mapper namespace="com.wang.dao.IFriendDAO">
+	<resultMap id="FriendMap" type="com.wang.bean.Friend">
+		<result column="friendId" property="friendId" jdbcType="VARCHAR"/>
+		<result column="friendImgUri" property="friendImgId" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<select id="getFriend" resultMap="FriendMap" 
+		parameterType="String" statementType="STATEMENT">
+		select * from ${dbName} 
+		where 
+		friendId = #{friendId, jdbcType=VARCHAR}
+	</select>
+	
+	<select id="getAllFriends" resultMap="FriendMap" statementType="STATEMENT">
+		select * from ${dbName}
+	</select>
+	
+	<delete id="deleteFriend" parameterType="String" statementType="STATEMENT">
+		delete from ${dbName} 
+		where friendId = #{friendId, jdbcType=VARCHAR}
+	</delete>
+	
+	<insert id="addFriend">
+		insert into ${dbName}
+		 values( #{friendId}, #{friendImgUri})
+	</insert>
+</mapper>

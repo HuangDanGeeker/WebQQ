@@ -19,7 +19,7 @@ public class ChatRecordService extends BasicService{
 		String dbName = getDBName(srcId, dstId);
 		if(num < 10)
 			num = 10;
-		List<ChatRecordItem> chatRecordItems = chatRecordDAO.getItems("history_"+getDBName(srcId, dstId), num-10, num);
+		List<ChatRecordItem> chatRecordItems = chatRecordDAO.getItems("record_"+getDBName(srcId, dstId), num-10, num);
 		
 		return chatRecordItems;
 	}

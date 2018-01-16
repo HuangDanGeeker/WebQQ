@@ -34,11 +34,10 @@
 <div id="list" class="col-md-3">
 <div id="list_header" class="text-center"></div>
 <div id="list_content_friend">
-    
+
 </div>
 <div id="list_content_talk" >
-   
-    
+  
 </div>
 <div id="list_content_selfInfo" style="padding-left:2%; padding-top:1%;">
 <form role="form">
@@ -62,7 +61,7 @@
 </div>
 <div id="list_footer" > 
     <div id="chatList" ><img  id="conversation" src="./images/tab_icon_conversation.png" ></div>
-    <div id="friendList"> <img id="contact" src="./images/tab_icon_contact.png" ></div>
+    <div id="friendList"> <img id="contact" src="./images/tab_icon_contact_selected.png" ></div>
     <div id="optsDiv"> <img id="opts" src="./images/tab_icon_setup.png" ></div>
 </div>
 </div>
@@ -157,7 +156,7 @@
     <div></div>
 
 </div>
-<div id="optsDialog" class="col-md-4 pre-scrollable">
+<div id="optsDialog" class="col-md-4">
 <div class="panel-group" id="optsPanels">
 	<div class="panel panel-default">
 		<div class="panel-heading">
@@ -216,8 +215,8 @@
 </div>
 
 <div id="recordDialog" class="col-md-4">
-    <div id="MsgRecordDiv" sytle="height:90%;"></div>
-    <div style="height:10%">
+    <div id="MsgRecordDiv"></div>
+    <div style="width:100%; height:10%">
         <button type="button" class="btn btn-info" id="getFormerDiv" onclick="historyOf($('#friendName').text(), function(){recodeFlag = recodeFlag +　10; return recodeFlag;}());"> 上一页</button>
         <button type="button" class="btn btn-info" id="getLaterDiv" onclick="historyOf($('#friendName').text(), function(){recodeFlag = recodeFlag -　10; return recodeFlag;}());" >下一页</button>
     </div>  

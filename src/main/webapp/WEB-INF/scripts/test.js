@@ -583,7 +583,7 @@ function historyOf(friendId, num){
 			$('#MsgRecordDiv').children().remove();
 			for(var i = 0; i < result.history.length; i++){
 				if(result.history[i].flag == "1"){
-					$('#MsgRecordDiv').append('<div class="leftBob"><img src="'+initResult.friendMap[friendName]+'"><font style="border-radius: 2px 2px; background-color:red;">'+result.history[i].content+'</font></div>');
+					$('#MsgRecordDiv').append('<div class="leftBob"><img src="'+initResult.friendMap[friendName]+'"><font>'+result.history[i].content+'</font></div>');
 				}else{
 					$('#MsgRecordDiv').append('<div class="rightBob"><font style="border-radius: 2px 2px; background-color:red;">'+result.history[i].content+'</font><img src="'+initResult.friendMap[friendName]+'"></div>');
 				}

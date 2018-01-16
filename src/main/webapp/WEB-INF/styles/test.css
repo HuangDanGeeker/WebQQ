@@ -31,18 +31,19 @@
 
 #iconDiv{
  
-	 height:50px; 
-	 margin-left:1%;
+	 height:50px;
+	 margin-top:1%; 
+	 
+	 padding-left:2%;
 }
 
 #icon{
 	
-	
 	height:100%;
-	width: 100%;
+	width: 70%;
 	border-radius: 5px 5px 5px 5px; 
  	border: 1px solid #222;
- 	padding-left: 4%;
+ 	
 }
 
 #list{
@@ -240,6 +241,7 @@
 	font-size:24px; 
 	border-radius: 2px 2px; 
 	max-width: 80%;
+	height:9%;
 }
 .leftBob > font{
 	border-radius: 2px 2px; 
@@ -248,8 +250,8 @@
 .leftBob img{
 	margin-right:1%;
 	margin-left:1%;
-	width: 5%;
-	height: 100%;
+	width: 6%;
+	height: 90%;
 	border-radius: 3px 3px;
 }
 .rightBob{
@@ -259,19 +261,20 @@
 	height:24px; 
 	font-size:24px; 
 	border-radius: 2px 2px;
+	height:9%;
 
 }
 .rightBob > font{
-	border-radius: 2px 2px; 
 	background-color: #FAFAFA;
+	border-radius: 2px 2px; 
 }
 
 
 .rightBob img{
 	margin-right:1%;
 	margin-left:1%;
-	width: 5%;
-	height: 100%;
+	width: 6%;
+	height: 90%;
 	border-radius: 3px 3px;
 }
 #emojiContent{
@@ -322,13 +325,13 @@
 
 #optsDialog{
 	display:none; 
-	height: 600px; 
+	height: 500px; 
 	background-color: #E0E0E0; 
 	float: left; 
 	margin-top:5px; 
 	border-radius: 5px; 
 	font-size: 18px;
-	overflow-y:auto; 
+	overflow-y: auto; 
 }
 #changeIcon{
 	width:100px;

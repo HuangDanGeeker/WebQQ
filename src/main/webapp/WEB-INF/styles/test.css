@@ -16,6 +16,15 @@
 #wrapper > input{
 	font-size: 18px;
 }
+#wrapper > p{
+	font-size: 18px;
+}
+#loginInfo{
+	background-color:#ec971f;
+	border-color:#d58512;
+	text-align:center;
+}
+
 #main{
 	position: fixed;
 	top: 0;

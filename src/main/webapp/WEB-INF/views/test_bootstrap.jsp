@@ -19,8 +19,9 @@
 
 <div class="container_fluid">
 <div class="row" id="wrapper">
-    <font size="5">请输入用户账号</font>
-    <font size="4" color="red"><p id="loginInfo"></p></font>
+    <p class="text-center" >请输入用户账号</p>
+    <p id="loginInfo" class="bg-warning text-center"></p>
+    
     <div class=" col-md-2 col-md-offset-5"><input type="text" class="form-control" id="userId" value="123"></div><br><br>
     <button type="button" class="btn btn-info" id="signBtn">sign in</button>
     <button type="button" class="btn btn-info" id="loginBtn">sign up</button>

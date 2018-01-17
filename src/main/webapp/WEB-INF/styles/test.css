@@ -170,6 +170,7 @@
 }
 
 .list-friend{
+	margin-top:0;
 	height: 45px; 
 	background-color: #787878;
 	border: 1px solid #222;
@@ -177,9 +178,10 @@
 }
 
 .list-talk{
+	margin-top:0;
 	height: 45px; 
 	background-color: #787878;
-	border: 0.5px solid #222;
+	border: 1px solid #222;
 }
 
 .list-img{
@@ -188,11 +190,7 @@
 	float: left;
 	
 }
-.list-talk > font{
-	float:left; 
-	border-radius: 2px 2px; 
-	
-}
+
 #optsDiv{
 	width: 30%; 
 	height:60px; 

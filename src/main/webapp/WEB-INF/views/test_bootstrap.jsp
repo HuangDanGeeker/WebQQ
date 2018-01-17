@@ -20,7 +20,7 @@
 <div class="container_fluid">
 <div class="row" id="wrapper">
     <p class="text-center" >请输入用户账号</p>
-    <p id="loginInfo" class="bg-warning text-center"></p>
+    <p id="loginInfo" class="bg-warning text-center center-block"></p>
     
     <div class=" col-md-2 col-md-offset-5"><input type="text" class="form-control" id="userId" value="123"></div><br><br>
     <button type="button" class="btn btn-info" id="signBtn">sign in</button>

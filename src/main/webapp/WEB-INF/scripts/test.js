@@ -69,7 +69,8 @@ window.onload = function () {
             	$('#list_content_friend').children().remove(); //清空容器
             	
                 for(var i = 0; i < result.friendsId.length; i++){                	
-                     $('#list_content_friend').append('<div class="list-friend" id="'+result.friendsId[i]+'">'+'<img class="list-img" src="'+result.friendsIcons[i]+'" onerror="" />'+result.friendsId[i]+'</div>');
+                     $('#list_content_friend').append('<div class="list-friend" id="'+result.friendsId[i]+'">'+'<a class="madia-left" href="#"><img class="media-object list-img" src="'+result.friendsIcons[i]+'" onerror="" /></a><div class="media-body"><h4 class="media-heading">'+result.friendsId[i]+'</h4></div></div>');
+                     
                      talkDocument[result.friendsId[i]] = "";
                  }
                 console.log(talkDocument);
@@ -291,11 +292,10 @@ function startWS(userId) {
         var item_talk = $('#list_content_talk').children("#"+messageEntity.from);
         console.log(item_talk);
         if(item_talk.length == 0 ||item_talk == undefined || item_talk == null ){
-        	var div = '<div class="list-talk" id="'+messageEntity.from+'" >'+'<img class="list-img" src="'+initResult.friendMap[messageEntity.from]+'" onerror="./images/defaultIcon.jpg"><font><div>'+messageEntity.from+'</div><div id="lastTalkContent">'+messageEntity.msg+'</div></font></div>';
+        	var div = '<div class="list-talk" id="'+messageEntity.from+'" ><a class="madia-left" href="#"><img class="media-object list-img" src="'+initResult.friendMap[messageEntity.from]+'" onerror=""></a><div class="media-body"><h4 class="media-heading">'+messageEntity.from+'</h4></div><div id="lastTalkContent">'+messageEntity.msg+'</div></div>';
         	$('#list_content_talk').append(div);
         	item_talk = $('#list_content_talk').children("#"+messageEntity.from);
         }else{
-        	//right here
         	$("#list_content_talk").find('#123').find('#lastTalkContent').text(messageEntity.msg);
         }
         div = '<div class="leftBob"><img class="leftBobImg" src="'+initResult.friendMap[messageEntity.from]+'"><font>'+messageEntity.msg+'</font></div>';
@@ -496,7 +496,7 @@ function addFriend(){
 				alert("添加");
 				initResult.friendsId[initResult.friendsId.length] = preAddFriendId;
 				$('#addFriendInfo').text("添加成功");
-				$('#list_content_friend').append('<div class="list-friend" id="'+preAddFriendId+'" ><img  class="list-img" src="'+result.imageIconUri+'" onerror="" />'+result["friendId"]+'</div>');
+				$('#list_content_friend').append('<div class="list-friend" id="'+preAddFriendId+'" ><a class="madia-left" href="#"><img  class="list-img media-object" src="'+result.imageIconUri+'" onerror="" /></a><div class="media-body"><h4 class="media-heading">'+result["friendId"]+'</h4></div></div>');
 				$('#list_content_friend').find('#'+preAddFriendId).click(function(){
 					clearInterval(flash['friend'+this.id]);
 		        	clearInterval(flash['talk'+this.id]);
@@ -524,11 +524,10 @@ function addFriend(){
 
 
 function drawListTalkItem(parentDiv, imgSrc, content, className, id, history){
-	console.log("herehereherehrer");
 	console.log(history);
 	if(history.length == 0)
 		return;
-	$(parentDiv).append('<div class="'+className+'"  id="'+id+'" ><img class="list-img" src="'+imgSrc+'"><font ><div>'+id+'</div><div id="lastTalkContent">'+content+'</div></font></div>');
+	$(parentDiv).append('<div class="'+className+'"  id="'+id+'" ><a class="media-left" href="#"><img class="list-img media-object" src="'+imgSrc+'"></a><font><div class="media-body"><h4 class="media-heading">'+id+'</h4><div id="lastTalkContent">'+content+'</div></font></div>');
 	talkDocument[id] = "";
 	for(entities in history){
 		console.log(history[entities].flag);

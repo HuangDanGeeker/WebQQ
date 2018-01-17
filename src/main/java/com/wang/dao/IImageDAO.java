@@ -2,6 +2,8 @@ package com.wang.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.wang.model.IconImageModel;
 
 public interface IImageDAO{
@@ -42,7 +44,7 @@ public interface IImageDAO{
 //	}
 
 	
-	public boolean updateUserImage(String id, String imageUri);
+	public boolean updateUserImage(@Param("id")String id, @Param("imageUri")String imageUri);
 	
 	public List<String> getAllImgIds();
 	
@@ -50,8 +52,8 @@ public interface IImageDAO{
 	
 	public List<IconImageModel> getAllImgs();
 	
-	public void deleteImg(String imageId);
-	public IconImageModel getImg(String imageId);
+	public void deleteImg(@Param("imageId")String imageId);
+	public IconImageModel getImg(@Param("imageId")String imageId);
 	
 	
 }

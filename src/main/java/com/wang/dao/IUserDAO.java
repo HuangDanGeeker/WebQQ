@@ -12,7 +12,7 @@ public interface IUserDAO{
 	
 	public void createRecordTable(@Param("dbName")String dbName);
 	
-	public void addFriend(@Param("dbName")String dbName, @Param("friendId")String friendId, @Param("friendImageUri")String friendImgUri);
+	public void addFriend(@Param("dbName")String dbName, @Param("friendId")String friendId, @Param("friendImgUri")String friendImgUri);
 
 	public boolean deleteUser(@Param("id")String id);
 

@@ -4,8 +4,7 @@ public class Friend {
 
 	private String friendId;
 	private String friendImgId;
-	
-	
+	private String friendImgUri;
 	public String getFriendId() {
 		return friendId;
 	}
@@ -18,4 +17,13 @@ public class Friend {
 	public void setFriendImgId(String friendImgId) {
 		this.friendImgId = friendImgId;
 	}
+	public String getFriendImgUri() {
+		return friendImgUri;
+	}
+	public void setFriendImgUri(String friendImgUri) {
+		this.friendImgUri = friendImgUri;
+	}
+	
+	
+
 }

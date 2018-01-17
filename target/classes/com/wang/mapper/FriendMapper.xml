@@ -4,7 +4,7 @@
 <mapper namespace="com.wang.dao.IFriendDAO">
 	<resultMap id="FriendMap" type="com.wang.bean.Friend">
 		<result column="friendId" property="friendId" jdbcType="VARCHAR"/>
-		<result column="friendImgUri" property="friendImgId" jdbcType="VARCHAR"/>
+		<result column="friendImgUri" property="friendImgUri" jdbcType="VARCHAR"/>
 	</resultMap>
 	
 	<select id="getFriend" resultMap="FriendMap" 

@@ -40,7 +40,7 @@ public class UserEntityService{
 			Map<String, String> friendMap = new HashMap<String, String>();
 			for(int i = 0; i < friendList.size(); i++){
 				friendIdList[i] = friendList.get(i).getFriendId();
-				friendImgUriList[i] = friendList.get(i).getFriendImgId();
+				friendImgUriList[i] = friendList.get(i).getFriendImgUri();
 				friendMap.put(friendIdList[i], friendImgUriList[i]);
 			}
 			userEntity.setFriendMap(friendMap);

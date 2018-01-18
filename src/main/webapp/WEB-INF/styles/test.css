@@ -251,13 +251,15 @@
 	height:9%;
 }
 .leftBob > font{
-	border-radius: 2px 2px; 
+	border-radius: 4px 4px; 
 	background-color: #A3D648;
+	padding-left:1%;
+	padding-right:1%;
 }
 .leftBob img{
 	margin-right:1%;
 	margin-left:1%;
-	width: 6%;
+	width: 8%;
 	height: 90%;
 	border-radius: 3px 3px;
 }
@@ -273,7 +275,9 @@
 }
 .rightBob > font{
 	background-color: #FAFAFA;
-	border-radius: 2px 2px; 
+	border-radius: 4px 4px; 
+	padding-left:1%;
+	padding-right:1%;
 }
 
 

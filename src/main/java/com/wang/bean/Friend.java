@@ -5,6 +5,7 @@ public class Friend {
 	private String friendId;
 	private String friendImgId;
 	private String friendImgUri;
+	private String groupName;
 	public String getFriendId() {
 		return friendId;
 	}
@@ -22,6 +23,12 @@ public class Friend {
 	}
 	public void setFriendImgUri(String friendImgUri) {
 		this.friendImgUri = friendImgUri;
+	}
+	public String getGroupName() {
+		return groupName;
+	}
+	public void setGroupName(String groupName) {
+		this.groupName = groupName;
 	}
 	
 	

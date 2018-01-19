@@ -14,5 +14,5 @@ public interface IFriendDAO {
 	
 	public void deleteFriend(@Param("dbName")String dbName, @Param("friendId")String friendId);
 	
-	public void addFriend(@Param("dbName")String dbName, @Param("friendId")String friendId, @Param("friendImgUri")String friendImgUri);
+	public void addFriend(@Param("dbName")String dbName, @Param("friendId")String friendId, @Param("groupName")String groupName);
 }

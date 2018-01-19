@@ -16,7 +16,6 @@ public class FriendService{
 	private IFriendDAO friendDAO;
 
 	public void deleteFriend(String userId, String friendId){
-		
 		friendDAO.deleteFriend("friend_"+userId, friendId);
 	}
 	
@@ -25,10 +24,8 @@ public class FriendService{
 		return friendDAO.getAllFriends("friend_"+id);
 	}
 	
-	public void addFriend(String id, String friendId) {
-		//TODO
-		String friendImgeUri = new UserEntityService().getUser(friendId).getImageUri();
-		friendDAO.addFriend("friend_"+id, friendId, friendImgeUri);
+	public void addFriend(String id, String friendId, String groupName) {
+		friendDAO.addFriend("friend_"+id, friendId, groupName);
 	}
 
 

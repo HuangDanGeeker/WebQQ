@@ -4,7 +4,7 @@
 <mapper namespace="com.wang.dao.IFriendDAO">
 	<resultMap id="FriendMap" type="com.wang.bean.Friend">
 		<result column="friendId" property="friendId" jdbcType="VARCHAR"/>
-		<result column="friendImgUri" property="friendImgUri" jdbcType="VARCHAR"/>
+		<result column="groupName" property="groupName" jdbcType="VARCHAR"/>
 	</resultMap>
 	
 	<select id="getFriend" resultMap="FriendMap" 
@@ -26,6 +26,6 @@
 	
 	<insert id="addFriend">
 		insert into ${dbName}
-		 values(#{friendId}, #{friendImgUri})
+		 values(#{friendId}, #{groupName})
 	</insert>
 </mapper>

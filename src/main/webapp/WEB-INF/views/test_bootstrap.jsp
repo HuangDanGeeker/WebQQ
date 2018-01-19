@@ -34,7 +34,7 @@
 <div id="iconDiv" class="col-md-1"><img id="icon" src=""  onerror="this.src='./images/defaultIcon.jpg'"></div>
 <div id="list" class="col-md-3">
 <div id="list_header" class="text-center"></div>
-<div id="list_content_friend">
+<div id="list_content_friend" class="panel-group">
 
 </div>
 <div id="list_content_talk" >

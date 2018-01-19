@@ -68,10 +68,21 @@ window.onload = function () {
             	//初始化好友列表
             	$('#list_content_friend').children().remove(); //清空容器
             	
-                for(var i = 0; i < result.friendsId.length; i++){                	
-                     $('#list_content_friend').append('<div class="list-friend" id="'+result.friendsId[i]+'">'+'<a class="madia-left" href="#"><img class="media-object list-img" src="'+result.friendsIcons[i]+'" onerror="" /></a><div class="media-body"><h4 class="media-heading">'+result.friendsId[i]+'</h4></div></div>');
-                     
-                     talkDocument[result.friendsId[i]] = "";
+                for(var i = 0; i < result.friendsId.length; i++){  
+                	var groupDiv = $('#list_content_friend').find("#panel_"+result.friendsGroupNames[i]);
+                	
+                	if(groupDiv.length == 0 || groupDiv == null || groupDiv == undefined){
+                	    $('#list_content_friend').append(
+                	        '<div id="panel_'+result.friendsGroupNames[i]+'" class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a href="#panel_group_'+result.friendsGroupNames[i]+'" data-parent="list_content_friend">'+result.friendsGroupNames[i]+'</a><br></h4></div></div>');
+
+                	    $("#panel_"+result.friendsGroupNames[i]).after('<div id="panel_group_'+result.friendsGroupNames[i]+'" class="panel-collapse collapse"><div class="panel-body"></div></div>');
+                	    
+                	}
+                	
+                	groupDiv = $("#panel_group_"+result.friendsGroupNames[i]).find(".panel-body");
+                	console.log(groupDiv);
+                	groupDiv.append('<div class="list-friend media" id="'+result.friendsId[i]+'"><a class="madia-left" href="#"><img class="media-object list-img" src="'+result.friendsIcons[i]+'" onerror="" /></a><div class="media-body"><h4 class="media-heading">'+result.friendsId[i]+'</h4></div></div>');
+                    talkDocument[result.friendsId[i]] = "";
                  }
                 console.log(talkDocument);
                 $('.list-friend').click( function () {

@@ -18,7 +18,7 @@ public class UserEntityService{
 	@Resource
 	private UserService userService;
 	@Resource
-	private FriendService friendListService;
+	private FriendService friendService;
 
 	public UserEntityService() {
 		// TODO Auto-generated constructor stub
@@ -34,16 +34,19 @@ public class UserEntityService{
 			userEntity.setExist(1);
 			userEntity.setIconUri(user.getImageUri());
 
-			List<Friend> friendList = friendListService.getAllFriends(userEntity.getUserId());
+			List<Friend> friendList = friendService.getAllFriends(userEntity.getUserId());
 			String[] friendIdList = new String[friendList.size()];
 			String[] friendImgUriList = new String[friendList.size()];
+			String[] friendGroupList = new String[friendList.size()];
 			Map<String, String> friendMap = new HashMap<String, String>();
 			for(int i = 0; i < friendList.size(); i++){
 				friendIdList[i] = friendList.get(i).getFriendId();
+				friendGroupList[i] = friendList.get(i).getGroupName();
 				friendImgUriList[i] = userService.getUserImgUri(friendIdList[i]);
 				friendMap.put(friendIdList[i], friendImgUriList[i]);
 			}
 			userEntity.setFriendMap(friendMap);
+			userEntity.setFriendsGroupNames(friendGroupList);
 			userEntity.setFriendsId(friendIdList);
 			userEntity.setFriendsIcons(friendImgUriList);
 		}
@@ -58,7 +61,7 @@ public class UserEntityService{
 	}
 
 	public boolean deleteFriend(String userId, String friendId) {
-		friendListService.deleteFriend(userId, friendId);
+		friendService.deleteFriend(userId, friendId);
 		return true;
 	}
 
@@ -71,11 +74,11 @@ public class UserEntityService{
 	}
 
 	public FriendService getFriendListService() {
-		return friendListService;
+		return friendService;
 	}
 
 	public void setFriendListService(FriendService friendListService) {
-		this.friendListService = friendListService;
+		this.friendService = friendListService;
 	}
 
 

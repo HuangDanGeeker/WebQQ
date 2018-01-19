@@ -14,6 +14,7 @@ public class UserEntity {
     private String userId;
     private String[] friendsId;
     private String[] friendsIcons;
+    private String[] friendsGroupNames;
     private int exist;
     private String iconUri;
 
@@ -111,6 +112,14 @@ public class UserEntity {
 
 	public void setIconUri(String iconUri) {
 		this.iconUri = iconUri;
+	}
+
+	public String[] getFriendsGroupNames() {
+		return friendsGroupNames;
+	}
+
+	public void setFriendsGroupNames(String[] friendsGroupNames) {
+		this.friendsGroupNames = friendsGroupNames;
 	}
    
 

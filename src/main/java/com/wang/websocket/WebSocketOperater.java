@@ -1,18 +1,12 @@
 package com.wang.websocket;
 import java.io.IOException;
-import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.*;
-
 import javax.annotation.Resource;
 import javax.websocket.*;
-import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
-
 import org.springframework.stereotype.Service;
-
 import net.sf.json.JSONObject;
-
 import com.wang.model.UserList;
 import com.wang.service.UnreachHistoryService;
 
@@ -21,10 +15,11 @@ import com.wang.service.UnreachHistoryService;
 @Service
 public class WebSocketOperater {
 
+	//TODO 这个时候注入就不可以了
 	@Resource
 	private UnreachHistoryService unreachHistoryService;
+	
 	private SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-	private ParsePosition pos = new ParsePosition(8);
 	
 	@OnMessage
 	public void onMessage(String message, Session session) 
@@ -36,6 +31,7 @@ public class WebSocketOperater {
 		Map<Session, String> userMap = UserList.getUserList();
 		Iterator iterator = userMap.keySet().iterator();
 		Session toSession = null;
+		//用户在线
 		while(iterator.hasNext()){
 			toSession = (Session) iterator.next();
 			if(userMap.get(toSession).equalsIgnoreCase(msgEntity[0])){

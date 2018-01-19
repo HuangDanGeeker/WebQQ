@@ -50,7 +50,6 @@ window.onload = function () {
 //          console.log(result.friendsId.length);
 			
             if(result.exist != 1){
-            	alert("not exist");
                 $("#loginInfo").text("用户不存在，请注册");
                 return;
             }else{
@@ -65,6 +64,7 @@ window.onload = function () {
                 INDEXDB.openDB(myDB.name, myDB.version, result.friendsId);
             	//获取用户头像
             	userIconUri = result.iconUri;
+            	$('#icon').attr("src", result.iconUri);
             	//初始化好友列表
             	$('#list_content_friend').children().remove(); //清空容器
             	
@@ -150,7 +150,7 @@ window.onload = function () {
     				console.log(imageUris.IconImages);
     				$('#changeIconDiv').children().remove();
     				for(var i = 0; i < imageUris.IconImages.length; i++){
-    					$('#changeIconDiv').append('<img class="icons" id="'+imageUris.IconImages[i].iconId+'" sytle="width:20%; height:100%; float:left;" src="'+imageUris.IconImages[i].uri+'">');
+    					$('#changeIconDiv').append('<img class="icons" id="'+imageUris.IconImages[i].iconId+'" src="'+imageUris.IconImages[i].uri+'">');
     				}
     				$('.icons').click(function(){
     					var imageUri = this.src;
@@ -477,7 +477,7 @@ function addFriend(){
     friendListDivChildren = $('#list_content_friend').children(); 
     for(var i = 0; i < friendListDivChildren.length; i++){
     	if(friendListDivChildren[i].id == preAddFriendId){
-    		console.log("有");
+    		$('#addFriendInfo').text("you already have the friend named : " +　preAddFriendId);
     		return;
     	}
     		

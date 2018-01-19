@@ -12,7 +12,7 @@ import com.wang.dao.IChatRecordDAO;
 import com.wang.model.HistoryEntity;
 
 
-@Service("unreachHistoryService")
+@Service
 public class UnreachHistoryService{
 
 	@Resource

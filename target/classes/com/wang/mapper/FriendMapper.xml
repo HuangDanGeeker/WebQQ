@@ -18,13 +18,14 @@
 		select * from ${dbName}
 	</select>
 	
-	<delete id="deleteFriend" parameterType="String" statementType="STATEMENT">
+	<delete id="deleteFriend">
 		delete from ${dbName} 
-		where friendId = #{friendId, jdbcType=VARCHAR}
+		where 
+		friendId = #{friendId}
 	</delete>
 	
 	<insert id="addFriend">
 		insert into ${dbName}
-		 values( #{friendId}, #{friendImgUri})
+		 values(#{friendId}, #{friendImgUri})
 	</insert>
 </mapper>

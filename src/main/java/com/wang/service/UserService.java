@@ -1,9 +1,12 @@
 package com.wang.service;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.wang.bean.Friend;
 import com.wang.bean.User;
 import com.wang.dao.IImageDAO;
 import com.wang.dao.IUserDAO;
@@ -17,8 +20,15 @@ public class UserService{
 	@Resource
 	private IImageDAO imageDAO;
 	
+	@Resource
+	private FriendService friendService;
+	
 	public User get(String id){
 		return userDAO.getUser(id);
+	}
+	
+	public String getUserImgUri(String id){
+		return userDAO.getUserImgUri(id);
 	}
 	
 	public boolean isExist(String id) {
@@ -40,11 +50,19 @@ public class UserService{
 	
 	public boolean addFriend(String userId, String friendId){
 		
-		userDAO.createRecordTable(getDBName(userId, friendId));
-		String userImgUri = userDAO.getUserImgUri(userId);
-		String friendImgUri = userDAO.getUserImgUri(friendId);
-		userDAO.addFriend("friend_"+userId, friendId, friendImgUri);
-		userDAO.addFriend("friend_"+friendId, userId, userImgUri);
+		userDAO.createRecordTable("record_"+getDBName(userId, friendId));
+//		String userImgUri = userDAO.getUserImgUri(userId);
+//		String friendImgUri = userDAO.getUserImgUri(friendId);
+		userDAO.addFriend("friend_"+userId, friendId, "group");
+		List<Friend> friendList = friendService.getAllFriends(friendId);
+		for(Friend item : friendList){
+			if(item.getFriendId().equals(userId)){
+				userDAO.deleteUser(userId);
+				userDAO.addFriend("friend_"+friendId, userId, "group");
+				return true;
+			}
+		}
+		userDAO.addFriend("friend_"+friendId, userId, "group");
 		
 		return true;
 	}

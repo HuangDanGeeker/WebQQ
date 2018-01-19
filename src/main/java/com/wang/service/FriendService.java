@@ -15,9 +15,9 @@ public class FriendService{
 	@Resource
 	private IFriendDAO friendDAO;
 
-	public boolean deleteFriend(String userId, String friendId){
+	public void deleteFriend(String userId, String friendId){
 		
-		return friendDAO.deleteFriend("friend_"+userId, friendId);
+		friendDAO.deleteFriend("friend_"+userId, friendId);
 	}
 	
 	

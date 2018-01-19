@@ -24,25 +24,30 @@
 	</select>
 	
 	<update id="addFriend">
-		insert into ${dbName} values(#{friendId}, #{imageUri_2})	
+		insert into ${dbName} values(#{friendId}, #{groupName})	
 	</update>
 	
 	<update id="createRecordTable" parameterType="String">
 		create table if not exists ${dbName} (srcId varchar(20), dstId varchar(20), content varchar(512), timestamp Date,constraint foreign key (srcId) references User(id), foreign key (dstId) references User(id));
 	</update>
 	
-	<select id="requireAccount" parameterType="String">
+	<select id="requireAccount" parameterType="String" resultType="String">
 		select id from user_set where flag=0 limit 0,1
 	</select>
 	
-	<update id="applyAccount">
+	<update id="applyAccount" >
 		insert into user values(#{userId}, 'http://localhost:8080/SpringMVC/images/defaultIcon.jpg', 'woman', 0, 'signature', null);
-		create table history_${userId}(friendId varchar(20), content varchar(512), timestamp datetime) character set = utf8;");
-		create table friend_${userId}(friendId varchar(20) DEFAULT NULL, friendImgUri varchar(200) DEFAULT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8";
+		create table history_${userId}(friendId varchar(20), content varchar(512), timestamp datetime) character set = utf8;
+		create table friend_${userId}(friendId varchar(20) DEFAULT NULL, groupName varchar(200) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+		update user_set set flag=1 where id = #{userId};
 	</update>
 	
 	<delete id="deleteUser">
 		delete from user where id = #{id}
+	</delete>
+	
+	<delete id="deleteFriend">
+		delete from ${dbName} where FriendId = #{friendId}
 	</delete>
 	
 	<update id="updateUser" parameterType="com.wang.bean.User">

@@ -175,9 +175,9 @@
     </div>
     <div id="deleteFriendsDiv" class="panel-collapse collapse">
     	<div class="panel-body">
-		    <h4><p id="deleteFriendInfo" class="label label-warning"></p></h4>
 		    <form style="margin-left:2%;" role="form">
 		        <label for="deleteFriendId">请输入好友账号</label>
+		        <h4><p id="deleteFriendInfo" class="label label-warning"></p></h4>
 		        <input type="text" id="deleteFriendId" class="form-control" value="abc" />
 		        <input type="checkbox" id="fullDelete" value="1"><label for="fullDelete">同时在对方好友列表中删除</label>
 		        <div style="text-align:center"><button type="button" class="btn btn-warning" onclick="deleteFriend()" >确认删除</button></div>
@@ -193,9 +193,9 @@
     
     <div id="addFriendsDiv" class="panel-collapse collapse">
     	<div class="panel-body">
-		    <h4><p id="addFriendInfo" class="label label-warning"></p></h4>
 		    <form role="form">
 		        <label for="addFriendId">请输入要添加的好友账号</label>
+		        <h4><p id="addFriendInfo" class="label label-warning"></p></h4>
 		        <input id="addFriendId" type="text" class="form-control" value="1231321312" /><br>
 		        <div style="text-align:center;"><button type="button" class="btn btn-info" onclick="addFriend()">确认添加</button></div>
 		    </form>

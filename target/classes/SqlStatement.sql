@@ -1,15 +1,15 @@
 /*user table*/
 create table User(id varchar(20) primary key, imageUri varchar(200), sex varchar(10), age int, signature varchar(40));
 /*image table*/
-create table Image(imageId varchar(40) primary key, imageUri varchar(300));
+create table image(imageId varchar(40) primary key, imageUri varchar(300));
 /*chat log*/
 create table record_luo_wang(srcId varchar(20), dstId varchar(20), content varchar(512), timestamp Date,constraint foreign key (srcId) references User(id), foreign key (dstId) references User(id));
 /*friend table*/    
-create table friend_123 (friendId varchar(20) DEFAULT NULL, friendImgUri varchar(200) DEFAULT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8    
+create table friend_123 (friendId varchar(20) DEFAULT NULL, groupName varchar(200) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8    
 /*UserSet*/
 create table user_set(id varchar(20) primary key, flag boolean)  character set = utf8;
 /*history_123*/
-create table history_123(friendId varchar(20), content varchar(512), timestamp datetime) character set = utf8;
+create table history_abc(friendId varchar(20), content varchar(512), timestamp datetime) character set = utf8;
 //插入未读消息
 insert into history_sss values('abc', 'content2&#xA9;&#x2693;&#x1F004', '2017-11-14 04:14:24');
 

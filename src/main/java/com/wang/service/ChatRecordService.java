@@ -16,7 +16,6 @@ public class ChatRecordService extends BasicService{
 	IChatRecordDAO chatRecordDAO;
 	
 	public List<ChatRecordItem> getItem(String srcId, String dstId, int num){
-		String dbName = getDBName(srcId, dstId);
 		if(num < 10)
 			num = 10;
 		List<ChatRecordItem> chatRecordItems = chatRecordDAO.getItems("record_"+getDBName(srcId, dstId), num-10, num);
@@ -26,8 +25,7 @@ public class ChatRecordService extends BasicService{
 	
 	
 	public boolean addItem(String srcId, String dstId, String content, String timestamp){
-		String dbName = getDBName(srcId, dstId);
-		String sql = "insert into " + dbName + " values('"+srcId+"', '"+ dstId+"', '"+content+"', '"+timestamp+"');";
+		String dbName = "record_"+getDBName(srcId, dstId);
 		chatRecordDAO.addItem(dbName, srcId, dstId, content, timestamp);
 		
 		return true;

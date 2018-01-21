@@ -85,6 +85,10 @@
 	margin-bottom:0;
 }
 
+#list_content_friend  p{
+	display: inline;
+}
+
 #list_content_talk{
 	width: 100%; 
 	height: 400px;

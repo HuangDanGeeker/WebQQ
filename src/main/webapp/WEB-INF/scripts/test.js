@@ -68,7 +68,7 @@ window.onload = function () {
             	$('#icon').attr("src", result.iconUri);
             	//初始化好友分组选项(在添加好友时可用)
             	var friendGroups = new Set();
-            	for(var i = 0; i < result.friendsId.length; i++){
+            	for(var i = 0; i < result.friendsGroupNames.length; i++){
             		friendGroups.add(result.friendsGroupNames[i]);
             	}
             	friendGroups.forEach(function (element, sameElement, set) {
@@ -88,7 +88,8 @@ window.onload = function () {
                 	    $("#panel_"+result.friendsGroupNames[i]).after('<div id="panel_group_'+result.friendsGroupNames[i]+'" class="panel-collapse collapse"><div class="panel-body"></div></div>');
                 	    
                 	}
-                	
+                	if(result.friendsId[i] == '""')
+                		continue;
                 	groupDiv = $("#panel_group_"+result.friendsGroupNames[i]).find(".panel-body");
                 	groupDiv.append('<div class="list-friend" id="'+result.friendsId[i]+'"><a class="madia-left" href="#"><img class="media-object list-img" src="'+result.friendsIcons[i]+'" onerror="" /></a><div class="media-body"><h4 class="media-heading">'+result.friendsId[i]+'</h4></div></div>');
                     talkDocument[result.friendsId[i]] = "";

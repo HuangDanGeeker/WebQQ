@@ -20,12 +20,11 @@
 	
 	<delete id="deleteFriend">
 		delete from ${dbName} 
-		where 
-		friendId = #{friendId}
+		where friendId = #{friendId}
 	</delete>
 	
 	<insert id="addFriend">
 		insert into ${dbName}
-		 values(#{friendId}, #{groupName})
+		values(#{friendId}, #{groupName})
 	</insert>
 </mapper>

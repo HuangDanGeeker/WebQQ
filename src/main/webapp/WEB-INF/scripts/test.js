@@ -301,22 +301,14 @@ function startWS(userId) {
     };
     ws.onmessage = function (message) {
         //TODO 
-    	alert(message.data);
         console.log(message);
         var messageEntity = eval("("+message.data+")");
-       
-        //好友列表闪烁
-        flash['friend'+messageEntity.from] = setInterval(function(){
-        	var item_friend = $('#list_content_friend').children("#"+messageEntity.from);
-        	item_friend.css("background-color", item_friend.css("background-color") == "rgb(120, 120, 120)" ? "#F6C60E" : "rgb(120, 120, 120)");
-        	setTimeout(function(){}, 100);
-        }, 2000);
-        console.log(flash);
-        //实时聊天记录闪烁+红点
+        
+        //实时聊天记录 红点
         var item_talk = $('#list_content_talk').children("#"+messageEntity.from);
         console.log(item_talk);
         if(item_talk.length == 0 ||item_talk == undefined || item_talk == null ){
-        	var div = '<div class="list-talk" id="'+messageEntity.from+'" ><a class="madia-left" href="#"><img class="media-object list-img" src="'+initResult.friendMap[messageEntity.from]+'" onerror=""></a><div class="media-body"><h4 class="media-heading">'+messageEntity.from+'</h4></div><div id="lastTalkContent">'+messageEntity.msg+'</div></div>';
+        	var div = '<div class="list-talk" id="'+messageEntity.from+'" ><div style="height:100%; width:85%; float:left;"><a class="madia-left" href="#"><img class="media-object list-img" src="'+initResult.friendMap[messageEntity.from]+'" onerror=""></a><div class="media-body"><h4 class="media-heading">'+messageEntity.from+'</h4></div><div id="lastTalkContent">'+messageEntity.msg+'</div></div><div style="height:100%;width:10%;float:left;"><span id="msgCount" style="background:red;  margin-top:30%;" class="badge">3</span></div></div>';
         	$('#list_content_talk').append(div);
         	item_talk = $('#list_content_talk').children("#"+messageEntity.from);
         }else{

@@ -51,7 +51,7 @@
    </div>
    <div class="form-group">
    		<label for="selfAge">age</label>
-   		<input type="text" id="form-control" id="selfAge"/>
+   		<input type="text" class="form-control" id="selfAge"/>
    	</div>
    <div >
    		<label for="selfSignature">signature</label>

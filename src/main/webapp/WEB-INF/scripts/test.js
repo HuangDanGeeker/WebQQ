@@ -88,7 +88,8 @@ window.onload = function () {
                 	    $("#panel_"+result.friendsGroupNames[i]).after('<div id="panel_group_'+result.friendsGroupNames[i]+'" class="panel-collapse collapse"><div class="panel-body"></div></div>');
                 	    
                 	}
-                	if(result.friendsId[i] == '""')
+                	console.log(result.friendsId[i]  + result.friendsId[i]  == "___");
+                	if(result.friendsId[i] == '___')
                 		continue;
                 	groupDiv = $("#panel_group_"+result.friendsGroupNames[i]).find(".panel-body");
                 	groupDiv.append('<div class="list-friend" id="'+result.friendsId[i]+'"><a class="madia-left" href="#"><img class="media-object list-img" src="'+result.friendsIcons[i]+'" onerror="" /></a><div class="media-body"><h4 class="media-heading">'+result.friendsId[i]+'</h4></div></div>');
@@ -200,6 +201,10 @@ window.onload = function () {
     document.getElementById("deleteFriend").onclick = function () {
         $('#deleteFriendsDiv').slideToggle("slow");
     }
+    
+    document.getElementById("addGroup").onclick = function () {
+        $('#addGroupDiv').slideToggle("slow");
+    }
 
     document.getElementById("addFriend").onclick = function () {
         $('#addFriendsDiv').slideToggle("slow");
@@ -235,9 +240,6 @@ window.onload = function () {
             	        size: 72
             	    }
             );
-            
-            
-
         });
 
     };
@@ -625,6 +627,31 @@ function historyOf(friendId, num){
 	});
 }
 
-
+function addGroup(){
+	console.log("add Group");
+	
+	$('#addGroupInfo').text("");
+	var preAddGroupName = document.getElementById('addGroupName').value;
+	$.ajax({
+	    url:"http://localhost:8080/SpringMVC/queryUser/"+ userId+"/___/"+preAddGroupName,
+	    dataType:'jsonp',
+	    processData: true, 
+	    type:'get',
+	    error:function(XMLHttpRequest, textStatus, errorThrown){
+	        var result = eval("("+XMLHttpRequest.responseText+")");
+	        console.log(result);
+	        if(result["exist"] == "false"){
+	            $('#addGroupInfo').text("添加成功");
+	            $('list_content_friend').append('<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a id="'+preAddGroupName+'" href="#'+preAddGroupName+'Div">'+preAddGroupName+'</a><br></h4></div></div><div id="'+preAddGroupName+'Div" class="panel-collapse collapse"><div class="panel-body"></div></div>');
+	            $("#"+preAddGroupName).click(function(){
+	                $("#"+preAddGroupName+"Div").toggle("show");
+	            });
+	        }else if(result["exist"] == "true"){
+	            $('#addGroupInfo').text("添加失败,请重新尝试");
+	        }
+	    }
+	});
+    
+}
 
 

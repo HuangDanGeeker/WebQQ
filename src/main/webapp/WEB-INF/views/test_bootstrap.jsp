@@ -187,6 +187,23 @@
     
     <div class="panel panel-default">
     	<div class="panel-heading">
+    		<h4 class="panel-title"><a id="addGroup" href="#addGroupDiv">添加分组</a><br></h4>
+    	</div>
+    </div>
+    
+    <div id="addGroupDiv" class="panel-collapse collapse">
+    	<div class="panel-body">
+		    <form role="form">
+		        <label for="addGroupName">请输入要添加的分组</label>
+		        <input id="addGroupName" type="text" class="form-control" value="" /><br>
+		        <h4><p id="addGroupInfo" class="label label-warning"></p></h4>
+		        <div style="text-align:center;"><button type="button" class="btn btn-info" onclick="addGroup()">确认添加</button></div>
+		    </form>
+	    </div>
+	</div>
+    
+    <div class="panel panel-default">
+    	<div class="panel-heading">
     		<h4 class="panel-title"><a id="addFriend" href="#addFriendsDiv">添加好友</a><br></h4>
     	</div>
     </div>
@@ -195,7 +212,7 @@
     	<div class="panel-body">
 		    <form role="form">
 		        <label for="addFriendId">请输入要添加的好友账号</label>
-		        <input id="addFriendId" type="text" class="form-control" value="1231321312" /><br>
+		        <input id="addFriendId" type="text" class="form-control" value="" /><br>
 		        <label for="addFriendGroup">请选择好友分组</label>
 				<select id="addFriendGroup" class="form-control">
 					

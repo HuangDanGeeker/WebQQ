@@ -399,6 +399,29 @@
 	margin-top:1%;
 }
 
+#addGroup{
+	width:100px;
+	height: 25px; 
+	border-radius: 5px; 
+	padding-left: 5%;
+}
+
+#addGroup > p{
+	background-color: #3A3A3A;  
+	border-radius: 5px;
+	color:white;
+	text-align:center;
+}
+
+
+#addGroupDiv{
+	height: 40%; 
+	display:none;
+	background-color: #787878;
+	border-radius:5px 5px;
+}
+
+
 #addFriend{
 	width:100px;
 	height: 25px; 

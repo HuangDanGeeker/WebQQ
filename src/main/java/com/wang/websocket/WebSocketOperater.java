@@ -34,9 +34,10 @@ public class WebSocketOperater {
 		//用户在线
 		while(iterator.hasNext()){
 			toSession = (Session) iterator.next();
+			System.out.println(msgEntity[0]+" "+userMap.get(toSession)+" "+userMap.get(toSession).equalsIgnoreCase(msgEntity[0]));
 			if(userMap.get(toSession).equalsIgnoreCase(msgEntity[0])){
 				toSession.getBasicRemote().sendText(msgEntity[1]);
-				break;
+				return;
 			}
 		}
 		//用户不在线

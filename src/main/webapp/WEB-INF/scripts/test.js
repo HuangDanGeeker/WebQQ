@@ -301,24 +301,25 @@ function startWS(userId) {
     };
     ws.onmessage = function (message) {
         //TODO 
-        console.log(message);
         var messageEntity = eval("("+message.data+")");
-        
+        console.log("==> "+messageEntity);
         //实时聊天记录 红点
         var item_talk = $('#list_content_talk').children("#"+messageEntity.from);
-        console.log(item_talk);
         if(item_talk.length == 0 ||item_talk == undefined || item_talk == null ){
-        	var div = '<div class="list-talk" id="'+messageEntity.from+'" ><div style="height:100%; width:85%; float:left;"><a class="madia-left" href="#"><img class="media-object list-img" src="'+initResult.friendMap[messageEntity.from]+'" onerror=""></a><div class="media-body"><h4 class="media-heading">'+messageEntity.from+'</h4></div><div id="lastTalkContent">'+messageEntity.msg+'</div></div><div style="height:100%;width:10%;float:left;"><span id="msgCount" style="background:red;  margin-top:30%;" class="badge">3</span></div></div>';
+        	var div = '<div class="list-talk" id="'+messageEntity.from+'" ><div style="height:100%; width:85%; float:left;"><a class="madia-left" href="#"><img class="media-object list-img" src="'+initResult.friendMap[messageEntity.from]+'" onerror=""></a><div class="media-body"><h4 class="media-heading">'+messageEntity.from+'</h4></div><div id="lastTalkContent">'+messageEntity.msg+'</div></div><div style="height:100%;width:10%;float:left;"><span id="msgCount" style="background:red;  margin-top:30%;" class="badge">0</span></div></div>';
         	$('#list_content_talk').append(div);
         	item_talk = $('#list_content_talk').children("#"+messageEntity.from);
         }else{
-        	$("#list_content_talk").find('#123').find('#lastTalkContent').text(messageEntity.msg);
+        	$("#list_content_talk").find('#'+messageEntity.from).find('#lastTalkContent').text(messageEntity.msg);
         }
+        var msgCount = $("#list_content_talk").find('#'+messageEntity.from).find('#msgCount');
+        msgCount.css("display", "inline-block").html(Number(msgCount.html())+1);
         div = '<div class="leftBob"><img class="leftBobImg" src="'+initResult.friendMap[messageEntity.from]+'"><font>'+messageEntity.msg+'</font></div>';
         talkDocument[messageEntity.from] = talkDocument[messageEntity.from] + div;
         $('.list-talk').click( function () {
-        	clearInterval(flash['friend'+this.id]);
-        	clearInterval(flash['talk'+this.id]);
+        	$("#list_content_talk").find('#'+messageEntity.from).find('#msgCount').html("0");
+        	$(this).find("#msgCount").css("display", "none");
+        	console.log($(this).find("#msgCount"));
         	$('#'+this.id).css("background-color", "rgb(120, 120, 120)");
             $("#optsDialog").css("display", 'none');
             $("#dialog").css("display", 'block');
@@ -327,11 +328,6 @@ function startWS(userId) {
             $("#talkContent").children().remove();
             drawBob(talkDocument[this.id]);
         });
-        flash['talk'+ messageEntity.from] = setInterval(function(){
-        	console.log("here");
-        	item_talk.css("background-color", item_talk.css("background-color") == "rgb(120, 120, 120)" ? "#F6C60E" : "rgb(120, 120, 120)");
-        	setTimeout(function(){}, 100);
-        }, 4000);
         
     };
     ws.onerror = function (error) {
@@ -353,7 +349,7 @@ function startWS(userId) {
     	if($('#chatMsg').val() == "")
     		return;
     	var msg = $('#friendName').text() +':#{"from":"'+userId+'", "type":"text"'+',"msg":"'+ $('#chatMsg').val() +'"}';
-        alert("send invoke\n"+msg);
+        //alert("send invoke\n"+msg);
         ws.send(msg);
         console.log(userIconUri);
         var div = '<div class="rightBob"><font style="border-radius: 2px 2px; background-color:red;">'+$('#chatMsg').val()+'</font><img src="'+userIconUri+'"></div>';
@@ -386,9 +382,9 @@ function startWS(userId) {
         var now = new Date();
         var now_str = now.getFullYear()+'/'+now.getMonth()+"/"+now.getDate()+" "+now.getHours()+":"+now.getMinutes()+":"+now.getSeconds();
         talkContent.timestamp = now_str;
-        
-        INDEXDB.addData(myDB.db, talkContent.to, talkContent);
         $('#chatMsg').val("");
+        INDEXDB.addData(myDB.db, talkContent.to, talkContent);
+        
         
     });
     

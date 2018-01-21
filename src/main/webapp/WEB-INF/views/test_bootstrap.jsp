@@ -195,8 +195,14 @@
     	<div class="panel-body">
 		    <form role="form">
 		        <label for="addFriendId">请输入要添加的好友账号</label>
-		        <h4><p id="addFriendInfo" class="label label-warning"></p></h4>
 		        <input id="addFriendId" type="text" class="form-control" value="1231321312" /><br>
+		        <label for="addFriendGroup">请选择好友分组</label>
+				<select id="addFriendGroup" class="form-control">
+					
+				</select>
+		        
+		        
+		        <h4><p id="addFriendInfo" class="label label-warning"></p></h4>
 		        <div style="text-align:center;"><button type="button" class="btn btn-info" onclick="addFriend()">确认添加</button></div>
 		    </form>
 	    </div>

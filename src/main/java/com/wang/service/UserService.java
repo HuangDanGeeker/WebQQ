@@ -48,12 +48,12 @@ public class UserService{
 		return userDAO.updateUser(user);
 	}
 	
-	public boolean addFriend(String userId, String friendId){
+	public boolean addFriend(String userId, String friendId, String groupName){
 		
 		userDAO.createRecordTable("record_"+getDBName(userId, friendId));
 //		String userImgUri = userDAO.getUserImgUri(userId);
 //		String friendImgUri = userDAO.getUserImgUri(friendId);
-		userDAO.addFriend("friend_"+userId, friendId, "group");
+		userDAO.addFriend("friend_"+userId, friendId, groupName);
 		List<Friend> friendList = friendService.getAllFriends(friendId);
 		for(Friend item : friendList){
 			if(item.getFriendId().equals(userId)){

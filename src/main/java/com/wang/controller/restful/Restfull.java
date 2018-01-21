@@ -77,7 +77,7 @@ public class Restfull {
 	@RequestMapping(value="/delete/{userId}/{friendId}/{fullDelete}", method=RequestMethod.GET)
 	@ResponseBody
 	public String deleteFriend(@PathVariable String userId, @PathVariable String friendId, @PathVariable String fullDelete){
-		System.out.println("delete friends");		
+		System.out.println("=====> deleteFriend");		
 		System.out.println("userID " + userId);		
 		System.out.println("friendId " + friendId);		
 		System.out.println("fullDelete " + fullDelete);		
@@ -139,6 +139,16 @@ public class Restfull {
 		return map;
 	}
 	
+	@RequestMapping(value="/queryIcon/{userId}", method=RequestMethod.GET)
+	@ResponseBody
+	public String querUserIcon(@PathVariable String userId){
+		System.out.println("=====> /queryIcon/{userId}");		
+		System.out.println("=====> userId " + userId);		
+		
+		return userService.getUserImgUri(userId);
+	}
+	
+	
 	
 	@RequestMapping(value="/changeIcon/{Id}/{imageUri}", method=RequestMethod.GET)
 	@ResponseBody
@@ -154,7 +164,7 @@ public class Restfull {
 	
 	@RequestMapping(value="/querySelfInfo/{userId}", method=RequestMethod.GET)
 	@ResponseBody
-	public String queryUser(@PathVariable String userId){
+	public String querySelfInfo(@PathVariable String userId){
 		System.out.println("=====> /querySelf/{userId}");		
 		System.out.println("userID " + userId);		
 	
@@ -173,15 +183,17 @@ public class Restfull {
 		return "";
 	}
 	
-	@RequestMapping(value="/queryUser/{id}/{friendId}", method=RequestMethod.GET)
+	@RequestMapping(value="/queryUser/{id}/{friendId}/{groupName}", method=RequestMethod.GET)
 	@ResponseBody
-	public String queryUser(@PathVariable String id, @PathVariable String friendId){
-		System.out.println("=====> queryUser");		
+	public String addFriend(@PathVariable String id, @PathVariable String friendId, @PathVariable String groupName){
+		System.out.println("=====> /queryUser/{id}/{friendId}/{groupName}");		
 		System.out.println("userID " + id);		
+		System.out.println("friendId " + friendId);		
+		System.out.println("groupName " + groupName);		
 	
 		if(userService.isExist(friendId)){
 			User user = userService.get(friendId);
-			userService.addFriend(id, friendId);
+			userService.addFriend(id, friendId, groupName);
 			
 			return "{\"friendId\":\""+friendId+"\", \"exist\":\"true\", \"imageIconUri\":\""+user.getImageUri()+"\"}";
 		}

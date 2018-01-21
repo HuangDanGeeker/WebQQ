@@ -6,6 +6,7 @@ var talkDocument = [];
 var initResult;
 var recodeFlag = 10;
 var flash = [];
+var friendGroups = [];
 window.onload = function () {
 	emojiInit();
 	
@@ -65,6 +66,15 @@ window.onload = function () {
             	//获取用户头像
             	userIconUri = result.iconUri;
             	$('#icon').attr("src", result.iconUri);
+            	//初始化好友分组选项(在添加好友时可用)
+            	var friendGroups = new Set();
+            	for(var i = 0; i < result.friendsId.length; i++){
+            		friendGroups.add(result.friendsGroupNames[i]);
+            	}
+            	friendGroups.forEach(function (element, sameElement, set) {
+            		$("#addFriendsDiv select").append("<option>"+element+"</option>");
+            	});
+            	$("#addFriendsDiv select").append()
             	//初始化好友列表
             	$('#list_content_friend').children().remove(); //清空容器
             	
@@ -80,7 +90,6 @@ window.onload = function () {
                 	}
                 	
                 	groupDiv = $("#panel_group_"+result.friendsGroupNames[i]).find(".panel-body");
-                	console.log(groupDiv);
                 	groupDiv.append('<div class="list-friend" id="'+result.friendsId[i]+'"><a class="madia-left" href="#"><img class="media-object list-img" src="'+result.friendsIcons[i]+'" onerror="" /></a><div class="media-body"><h4 class="media-heading">'+result.friendsId[i]+'</h4></div></div>');
                     talkDocument[result.friendsId[i]] = "";
                  }
@@ -358,10 +367,8 @@ function startWS(userId) {
         var listTlak = $('#list_content_talk').children("#"+$('#friendName').text())[0];
         console.log(listTlak);
         if(listTlak != undefined &&!listTlak.lenght){
-        	alert("yes");
         	console.log($('#'+$('#friendName').text()).find("#lastTalkContent").text($('#chatMsg').val()));
         }else{
-        	alert("no");
         	var friendId = $('#friendName').text();
         	$('#list_content_talk').append('<div class="list-talk" id="'+friendId+'" >'+'<img class="list-img" src="'+initResult.friendMap[friendId]+'" onerror="./images/defaultIcon.jpg"><font><div>'+friendId+'</div><div id="lastTalkContent">'+$('#chatMsg').val()+'</div></font></div>');
         	$('.list-talk').click( function () {
@@ -448,36 +455,29 @@ function deleteFriend(){
 	
 	$('#deleteFriendInfo').text("");
     var preDeleteFriendId = document.getElementById('deleteFriendId').value;
+    var deletedDiv = $('#list_content_friend').find("#"+preDeleteFriendId);
 
-    friendListDivChildren = $('#list_content_friend').children(); 
-    console.log(friendListDivChildren);
-    for(var i = 0; i < friendListDivChildren.length; i++){
-//    	console.log(friendListDivChildren[i].id);
-//    	console.log($('#fullDelete').is(':checked'));
-    	if(friendListDivChildren[i].id == preDeleteFriendId){
-    		friendListDivChildren.splice(i, 1);
-    		//TODO
-    		$.ajax({
-    			url:"http://localhost:8080/SpringMVC/delete/"+userId+"/"+ preDeleteFriendId+"/"+$('#fullDelete').is(':checked'),
-    	        dataType:'jsonp',
-    	        processData: true, 
-    	        type:'get',
-    			error:function(XMLHttpRequest, textStatus, errorThrown){
-    				var result = eval("("+XMLHttpRequest.responseText+")");
-    				
-    				if(result.result == 1){
-    					$('#deleteFriendInfo').text("删除成功");
-    					$('#list_content_friend').find('#'+preDeleteFriendId).remove();
-    				}else if(result.result == 0){
-    					$('#deleteFriendInfo').text("oops!"+result.reason+"删除失败");
-    				}
-    			}
-    		});
-    		
-    		return;
-    	}
-    }
-    $('#deleteFriendInfo').text("好友不存在，删除失败");
+    if(0 == deletedDiv.length){
+		$('#deleteFriendInfo').text("好友不存在，删除失败");
+		return;
+	}
+    $.ajax({
+		url:"http://localhost:8080/SpringMVC/delete/"+userId+"/"+ preDeleteFriendId+"/"+$('#fullDelete').is(':checked'),
+        dataType:'jsonp',
+        processData: true, 
+        type:'get',
+		error:function(XMLHttpRequest, textStatus, errorThrown){
+			var result = eval("("+XMLHttpRequest.responseText+")");
+			if(result.result == 1){
+				$('#deleteFriendInfo').text("删除成功");
+				$("#list_content_friend").find('#'+preDeleteFriendId).remove();
+				$("#list_content_talk").find('#'+preDeleteFriendId).remove();
+			}else if(result.result == 0){
+				$('#deleteFriendInfo').text("oops!"+result.reason+"删除失败");
+			}
+		}
+	});
+    
 }
 
 
@@ -485,6 +485,7 @@ function addFriend(){
 	console.log("add Friend");
 	$('#addFriendInfo').text("");
     var preAddFriendId = document.getElementById('addFriendId').value;
+    var preAddFriendGroup = document.getElementById('addFriendGroup').value;
     friendListDivChildren = $('#list_content_friend').children(); 
     for(var i = 0; i < friendListDivChildren.length; i++){
     	if(friendListDivChildren[i].id == preAddFriendId){
@@ -496,7 +497,7 @@ function addFriend(){
 //    	console.log(friendListDivChildren[i].id);
 //    	console.log($('#fullDelete').is(':checked'));
 	$.ajax({
-		url:"http://localhost:8080/SpringMVC/queryUser/"+ userId+"/"+preAddFriendId,
+		url:"http://localhost:8080/SpringMVC/queryUser/"+ userId+"/"+preAddFriendId+"/"+preAddFriendGroup,
         dataType:'jsonp',
         processData: true, 
         type:'get',
@@ -504,10 +505,13 @@ function addFriend(){
 			console.log(XMLHttpRequest.responseText);
 			var result = eval("("+XMLHttpRequest.responseText+")");
 			if(result["exist"] == "true"){
-				alert("添加");
 				initResult.friendsId[initResult.friendsId.length] = preAddFriendId;
 				$('#addFriendInfo').text("添加成功");
-				$('#list_content_friend').append('<div class="list-friend" id="'+preAddFriendId+'" ><a class="madia-left" href="#"><img  class="list-img media-object" src="'+result.imageIconUri+'" onerror="" /></a><div class="media-body"><h4 class="media-heading">'+result["friendId"]+'</h4></div></div>');
+
+				groupDiv = $("#panel_group_"+preAddFriendGroup).find(".panel-body");
+            	groupDiv.append('<div class="list-friend" id="'+preAddFriendId+'"><a class="madia-left" href="#"><img class="media-object list-img" src="'+result.imageIconUri+'" onerror="" /></a><div class="media-body"><h4 class="media-heading">'+preAddFriendId+'</h4></div></div>');
+                talkDocument[preAddFriendId] = "";
+                getUserIcon(preAddFriendId);
 				$('#list_content_friend').find('#'+preAddFriendId).click(function(){
 					clearInterval(flash['friend'+this.id]);
 		        	clearInterval(flash['talk'+this.id]);
@@ -520,17 +524,26 @@ function addFriend(){
                     
 				});
 				friendListDivChildren[friendListDivChildren.length] = $('#list_content_friend').find('#'+preAddFriendId);
-				console.log(friendListDivChildren);
+//				console.log(friendListDivChildren);
 			}else if(result["exist"] == "false"){
-				alert("未添加");
-				$('#addFriendInfo').text("用户不存在，添加失败");
+				$('#addFriendInfo').text("用户不存在,添加失败");
 			}
 		}
 	});
     
 }
 
-
+//function getUserIcon(userId){
+//	$.ajax({
+//		url:"http://localhost:8080/SpringMVC/queryIcon/"+ userId,
+//		dataType:'jsonp',
+//        processData: true, 
+//        type:'get',
+//		error:function(XMLHttpRequest, textStatus, errorThrown){
+//			$("#"+userId+" img").attr("src", XMLHttpRequest.responseText);
+//		}
+//	});
+//}
 
 
 

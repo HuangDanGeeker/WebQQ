@@ -58,11 +58,6 @@ window.onload = function () {
                 //创建websocket
             	var ws = startWS(userId);
             	
-            	//初始化indexedDB
-            	console.log("indexedDB name =>" + myDB.name);
-            	console.log("indexedDB tables =>" + result.friendsId);
-            	
-                INDEXDB.openDB(myDB.name, myDB.version, result.friendsId);
             	//获取用户头像
             	userIconUri = result.iconUri;
             	$('#icon').attr("src", result.iconUri);
@@ -336,13 +331,6 @@ function startWS(userId) {
 
     ws.onclose =  function () {
         console.log('webSocket closed');
-        //TODO 将本地的聊天记录发送到服务器
-        for(var i = 0; i <　initResult.friendsId.length; i++){
-        	INDEXDB.uploadAllData(myDB.db, initResult.friendsId[i]);
-        	INDEXDB.clearData(myDB.db, initResult.friendsId[i]);
-        }
-        
-        
     };
     
     $('#sendBtn').click(function (){

@@ -15,7 +15,6 @@
 <script src="../SpringMVC/scripts/ui.js" type="text/javascript"></script>
 <script src="../SpringMVC/scripts/test.js" type="text/javascript"></script>
 <script src="../SpringMVC/scripts/emojiInit.js" type="text/javascript"></script>
-<script src="../SpringMVC/scripts/indexedDB.js" type="text/javascript"></script>
 
 <div class="container_fluid">
 <div class="row" id="wrapper">

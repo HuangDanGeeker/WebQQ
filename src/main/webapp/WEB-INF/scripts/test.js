@@ -125,6 +125,7 @@ window.onload = function () {
                     error:function(XMLHttpRequest, textStatus, errorThrown) {
                     	console.log(result);
                     	historyOfAll = eval("("+XMLHttpRequest.responseText+")");
+                    	console.log("historyOfAll");
                     	console.log(historyOfAll);
                     	for(item in historyOfAll){
 //                    		console.log("=>"+typeof(historyOfAll[item]));
@@ -295,6 +296,9 @@ function startWS(userId) {
         console.log('webSocket opened');
     };
     ws.onmessage = function (message) {
+    	//播放声音
+    	playInformAudio('ios_message_audio');
+    	
         //TODO 
         var messageEntity = eval("("+message.data+")");
         console.log("==> "+messageEntity);
@@ -336,6 +340,8 @@ function startWS(userId) {
     $('#sendBtn').click(function (){
     	if($('#chatMsg').val() == "")
     		return;
+    	//消息发送成功提示音
+    	playInformAudio('send_success_audio');
     	var msg = $('#friendName').text() +':#{"from":"'+userId+'", "type":"text"'+',"msg":"'+ $('#chatMsg').val() +'"}';
         //alert("send invoke\n"+msg);
         ws.send(msg);
@@ -371,7 +377,6 @@ function startWS(userId) {
         var now_str = now.getFullYear()+'/'+now.getMonth()+"/"+now.getDate()+" "+now.getHours()+":"+now.getMinutes()+":"+now.getSeconds();
         talkContent.timestamp = now_str;
         $('#chatMsg').val("");
-        INDEXDB.addData(myDB.db, talkContent.to, talkContent);
         
         
     });
@@ -554,6 +559,9 @@ function drawListTalkItem(parentDiv, imgSrc, content, className, id, history){
         $("#talkContent").children().remove();
         drawBob(talkDocument[this.id]);
     });
+	
+	//存在历史消息,播放声音
+	playInformAudio('ios_message_audio');
 }
 function drawBob(singleChatText){
 	$("#talkContent").append(singleChatText);
@@ -631,4 +639,7 @@ function addGroup(){
     
 }
 
-
+function playInformAudio(audioName){
+	var audio = document.getElementById(audioName).play();
+	setTimeout(function(){document.getElementById(audioName).pause();}, 2000);
+}

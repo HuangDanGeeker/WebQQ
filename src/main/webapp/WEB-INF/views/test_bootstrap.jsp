@@ -12,9 +12,6 @@
 	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-<script src="../SpringMVC/scripts/ui.js" type="text/javascript"></script>
-<script src="../SpringMVC/scripts/test.js" type="text/javascript"></script>
-<script src="../SpringMVC/scripts/emojiInit.js" type="text/javascript"></script>
 
 <div class="container_fluid">
 <div class="row" id="wrapper">
@@ -247,5 +244,16 @@
 </div>
 
 </div>
+<div id="page_resources" class="container_fluid">
+	<audio id="didi_audio" src="http://localhost:8080/SpringMVC/sounds/didi.wav" controls="controls" loop="false" hidden="false">
+	<audio id="ios_message_audio" src="http://localhost:8080/SpringMVC/sounds/ios_message.wav" controls="controls" loop="false" hidden="true" >
+	<audio id="ios_qq_audio" src="http://localhost:8080/SpringMVC/sounds/ios_qq.wav" controls="controls" loop="false" hidden="true" >
+	<audio id="send_success_audio" src="http://localhost:8080/SpringMVC/sounds/send_success.wav" controls="controls" loop="false" hidden="true" >
+</div>
+
+<script src="../SpringMVC/scripts/ui.js" type="text/javascript"></script>
+<script src="../SpringMVC/scripts/test.js" type="text/javascript"></script>
+<script src="../SpringMVC/scripts/emojiInit.js" type="text/javascript"></script>
+
 </body>
 </html>

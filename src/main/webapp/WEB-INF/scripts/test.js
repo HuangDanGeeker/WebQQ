@@ -79,7 +79,7 @@ window.onload = function () {
                 	
                 	if(groupDiv.length == 0 || groupDiv == null || groupDiv == undefined){
                 	    $('#list_content_friend').append(
-                	        '<div id="panel_'+result.friendsGroupNames[i]+'" class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a href="#panel_group_'+result.friendsGroupNames[i]+'" data-toggle="collapse" data-parent="#list_content_friend">'+result.friendsGroupNames[i]+'</a><p id="count">0</p><br></h4></div></div>');
+                	        '<div id="panel_'+result.friendsGroupNames[i]+'" class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a href="#panel_group_'+result.friendsGroupNames[i]+'" data-toggle="collapse" data-parent="#list_content_friend">'+result.friendsGroupNames[i]+'</a><span class="pull-right"><p id="aliveCount">0</p>/<p id="count">0</p></span><br></h4></div></div>');
 
                 	    $("#panel_"+result.friendsGroupNames[i]).after('<div id="panel_group_'+result.friendsGroupNames[i]+'" class="panel-collapse collapse"><div class="panel-body"></div></div>');
                 	    
@@ -91,12 +91,13 @@ window.onload = function () {
                 	if(result.friendAlives[i]){
                 		listFriendItemHtml = '<div class="list-friend" id="'+result.friendsId[i]+'"'+aliveHtml+'><a class="madia-left" href="#"><img class="media-object list-img" src="'+result.friendsIcons[i]+'" onerror="" /></a><div class="media-body"><h4 class="media-heading">'+result.friendsId[i]+'</h4></div></div>';
                 		groupDiv.append(listFriendItemHtml);
+                		$("#panel_group_"+result.friendsGroupNames[i]).prev().find('#aliveCount').html((Number($("#panel_"+result.friendsGroupNames[i]).find('#aliveCount').html())+1));
                 	}else{
                 		listFriendItemHtml = '<div class="list-friend" id="'+result.friendsId[i]+'"><a class="madia-left" href="#"><img class="media-object list-img" src="'+result.friendsIcons[i]+'" onerror="" /></a><div class="media-body"><h4 class="media-heading">'+result.friendsId[i]+'</h4></div></div>';
                 		groupDiv.prepend(listFriendItemHtml);
                 	}
                 	
-                	$("#panel_group_"+result.friendsGroupNames[i]).prev().find('#count').html(" "+(Number($("#panel_"+result.friendsGroupNames[i]).find('#count').html().trim())+1));
+                	$("#panel_group_"+result.friendsGroupNames[i]).prev().find('#count').html((Number($("#panel_"+result.friendsGroupNames[i]).find('#count').html().trim())+1));
                     talkDocument[result.friendsId[i]] = "";
                  }
 //                console.log(talkDocument);

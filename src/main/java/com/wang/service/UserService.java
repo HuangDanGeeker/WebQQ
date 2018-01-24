@@ -67,7 +67,13 @@ public class UserService{
 		return true;
 	}
 	
-	public String getDBName(String id_1, String id_2){
+	public Boolean isAlive(String userId){
+		Boolean isAlive = userDAO.isAlive(userId);
+		isAlive = isAlive == null ? false : isAlive;
+		return isAlive;
+	}
+	
+	private String getDBName(String id_1, String id_2){
 		
 		if(id_1.length() < id_2.length()){
 			return id_2 +"_"+id_1;

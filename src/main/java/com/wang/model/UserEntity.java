@@ -17,7 +17,7 @@ public class UserEntity {
     private String[] friendsGroupNames;
     private int exist;
     private String iconUri;
-
+    private Boolean[] friendAlives;
     //对friendsId friendsIcons做冗余
     private Map<String, String> friendMap = new HashMap<String, String>();
 
@@ -121,6 +121,15 @@ public class UserEntity {
 	public void setFriendsGroupNames(String[] friendsGroupNames) {
 		this.friendsGroupNames = friendsGroupNames;
 	}
-   
+
+	public Boolean[] getFriendAlives() {
+		return friendAlives;
+	}
+
+	public void setFriendAlives(Boolean[] friendAlives) {
+		this.friendAlives = friendAlives;
+	}
+
+
 
 }

@@ -8,6 +8,7 @@
 		<result column="sex" property="sex" jdbcType="VARCHAR"/>
 		<result column="signature" property="signature" jdbcType="VARCHAR"/>
 		<result column="age" property="age" jdbcType="INTEGER"/>
+		<result column="alive" property="isAlive" jdbcType="BOOLEAN"/>
 	</resultMap>
 	
 	<select id="getUser" resultMap="UserMap" 
@@ -54,4 +55,11 @@
 		update user set age = #{user}.age, sex= #{user}.sex, signature = #{user}.signature where id= #{user}.id
 	</update>
 	
+	<select id="isAlive" resultType="Boolean">
+		select IFNULL(alive, false) from user where id = #{userId}
+	</select>
+	
+	<update id="setAlive">
+		update user set alive = #{isAlive} where id = #{userId}
+	</update>
 </mapper>

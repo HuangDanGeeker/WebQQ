@@ -1,5 +1,5 @@
 /*user table*/
-create table User(id varchar(20) primary key, imageUri varchar(200), sex varchar(10), age int, signature varchar(40));
+create table User(id varchar(20) primary key, imageUri varchar(200), sex varchar(10), age int, signature varchar(40), alive boolean default false);
 /*image table*/
 create table image(imageId varchar(40) primary key, imageUri varchar(300));
 /*chat log*/

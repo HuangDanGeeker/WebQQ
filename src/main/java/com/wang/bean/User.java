@@ -9,7 +9,7 @@ public class User {
 	public String sex;
 	public int age;
 	public String signature;
-	
+	public boolean isAlive;
 	public User(){
 		
 	}
@@ -49,6 +49,14 @@ public class User {
 	public String toString() {
 		// TODO Auto-generated method stub
 		return "{\"id\":\""+this.getId()+"\", \"age\":\""+this.getAge()+"\", \"sex\":\""+this.getSex()+"\", \"signature\":\""+this.getSignature()+"\"}";
+	}
+
+	public boolean isAlive() {
+		return isAlive;
+	}
+
+	public void setAlive(boolean isAlive) {
+		this.isAlive = isAlive;
 	}
 	
 }

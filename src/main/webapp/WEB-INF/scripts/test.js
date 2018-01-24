@@ -72,7 +72,8 @@ window.onload = function () {
             	$("#addFriendsDiv select").append()
             	//初始化好友列表
             	$('#list_content_friend').children().remove(); //清空容器
-            	
+            	var aliveHtml = " style='background-color:#555555' ";
+            	var listFriendItemHtml;
                 for(var i = 0; i < result.friendsId.length; i++){  
                 	var groupDiv = $('#list_content_friend').find("#panel_"+result.friendsGroupNames[i]);
                 	
@@ -86,12 +87,18 @@ window.onload = function () {
                 	if(result.friendsId[i] == '___')
                 		continue;
                 	groupDiv = $("#panel_group_"+result.friendsGroupNames[i]).find(".panel-body");
-                	groupDiv.append('<div class="list-friend" id="'+result.friendsId[i]+'"><a class="madia-left" href="#"><img class="media-object list-img" src="'+result.friendsIcons[i]+'" onerror="" /></a><div class="media-body"><h4 class="media-heading">'+result.friendsId[i]+'</h4></div></div>');
+                	
+                	console.log("=>"+result.friendAlives[i]);
+                	if(result.friendAlives[i])
+                		listFriendItemHtml = '<div class="list-friend" id="'+result.friendsId[i]+'"'+aliveHtml+'><a class="madia-left" href="#"><img class="media-object list-img" src="'+result.friendsIcons[i]+'" onerror="" /></a><div class="media-body"><h4 class="media-heading">'+result.friendsId[i]+'</h4></div></div>';
+                	else
+                		listFriendItemHtml = '<div class="list-friend" id="'+result.friendsId[i]+'"><a class="madia-left" href="#"><img class="media-object list-img" src="'+result.friendsIcons[i]+'" onerror="" /></a><div class="media-body"><h4 class="media-heading">'+result.friendsId[i]+'</h4></div></div>';
+                	groupDiv.append(listFriendItemHtml);
                 	console.log("===>"+result.friendsGroupNames[i]);
                 	$("#panel_group_"+result.friendsGroupNames[i]).prev().find('#count').html(" "+(Number($("#panel_"+result.friendsGroupNames[i]).find('#count').html().trim())+1));
                     talkDocument[result.friendsId[i]] = "";
                  }
-                console.log(talkDocument);
+//                console.log(talkDocument);
                 $('.list-friend').click( function () {
                 	clearInterval(flash['friend'+this.id]);
                 	clearInterval(flash['talk'+this.id]);

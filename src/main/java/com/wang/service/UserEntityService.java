@@ -38,17 +38,20 @@ public class UserEntityService{
 			String[] friendIdList = new String[friendList.size()];
 			String[] friendImgUriList = new String[friendList.size()];
 			String[] friendGroupList = new String[friendList.size()];
+			Boolean[] friendAliveList = new Boolean[friendList.size()];
 			Map<String, String> friendMap = new HashMap<String, String>();
 			for(int i = 0; i < friendList.size(); i++){
 				friendIdList[i] = friendList.get(i).getFriendId();
 				friendGroupList[i] = friendList.get(i).getGroupName();
 				friendImgUriList[i] = userService.getUserImgUri(friendIdList[i]);
+				friendAliveList[i] = userService.isAlive(friendIdList[i]);
 				friendMap.put(friendIdList[i], friendImgUriList[i]);
 			}
 			userEntity.setFriendMap(friendMap);
 			userEntity.setFriendsGroupNames(friendGroupList);
 			userEntity.setFriendsId(friendIdList);
 			userEntity.setFriendsIcons(friendImgUriList);
+			userEntity.setFriendAlives(friendAliveList);
 		}
 		
 		return userEntity;
@@ -82,18 +85,4 @@ public class UserEntityService{
 	}
 
 
-public String getDBName(String id_1, String id_2){
-		
-		if(id_1.length() < id_2.length()){
-			return id_2 +"_"+id_1;
-		}else if(id_1.length() > id_2.length()){
-			return id_1 +"_" + id_2;
-		}else{
-			int result = id_1.compareToIgnoreCase(id_2);
-			if(result > 0)
-				return id_1 +"_" + id_2;
-			else
-				return id_2 +"_"+id_1;
-		}
-	}
 }

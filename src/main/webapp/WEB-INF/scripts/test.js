@@ -88,13 +88,14 @@ window.onload = function () {
                 		continue;
                 	groupDiv = $("#panel_group_"+result.friendsGroupNames[i]).find(".panel-body");
                 	
-                	console.log("=>"+result.friendAlives[i]);
-                	if(result.friendAlives[i])
+                	if(result.friendAlives[i]){
                 		listFriendItemHtml = '<div class="list-friend" id="'+result.friendsId[i]+'"'+aliveHtml+'><a class="madia-left" href="#"><img class="media-object list-img" src="'+result.friendsIcons[i]+'" onerror="" /></a><div class="media-body"><h4 class="media-heading">'+result.friendsId[i]+'</h4></div></div>';
-                	else
+                		groupDiv.append(listFriendItemHtml);
+                	}else{
                 		listFriendItemHtml = '<div class="list-friend" id="'+result.friendsId[i]+'"><a class="madia-left" href="#"><img class="media-object list-img" src="'+result.friendsIcons[i]+'" onerror="" /></a><div class="media-body"><h4 class="media-heading">'+result.friendsId[i]+'</h4></div></div>';
-                	groupDiv.append(listFriendItemHtml);
-                	console.log("===>"+result.friendsGroupNames[i]);
+                		groupDiv.prepend(listFriendItemHtml);
+                	}
+                	
                 	$("#panel_group_"+result.friendsGroupNames[i]).prev().find('#count').html(" "+(Number($("#panel_"+result.friendsGroupNames[i]).find('#count').html().trim())+1));
                     talkDocument[result.friendsId[i]] = "";
                  }

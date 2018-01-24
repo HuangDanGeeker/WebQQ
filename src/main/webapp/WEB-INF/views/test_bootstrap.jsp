@@ -59,7 +59,7 @@
 <div id="list_footer" > 
     <div id="chatList" ><img  id="conversation" src="./images/tab_icon_conversation.png" ></div>
     <div id="friendList"> <img id="contact" src="./images/tab_icon_contact_selected.png" ></div>
-    <div id="optsDiv"> <img id="opts" src="./images/tab_icon_setup.png" ></div>
+    <div id="optsDiv"> <img id="opts" src="./images/tab_icon_opts.png" ></div>
 </div>
 </div>
 

@@ -79,7 +79,7 @@ window.onload = function () {
                 	
                 	if(groupDiv.length == 0 || groupDiv == null || groupDiv == undefined){
                 	    $('#list_content_friend').append(
-                	        '<div id="panel_'+result.friendsGroupNames[i]+'" class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a href="#panel_group_'+result.friendsGroupNames[i]+'" data-toggle="collapse" data-parent="#list_content_friend">'+result.friendsGroupNames[i]+'</a><span class="pull-right"><p id="aliveCount">0</p>/<p id="count">0</p></span><br></h4></div></div>');
+                	        '<div id="panel_'+result.friendsGroupNames[i]+'" class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a href="#panel_group_'+result.friendsGroupNames[i]+'" data-toggle="collapse" data-parent="#list_content_friend">'+result.friendsGroupNames[i]+'</a><span class="pull-right label label-warning text-center" style="height:100%; line-height:100%;"><p id="aliveCount">0</p>/<p id="count">0</p></span><br></h4></div></div>');
 
                 	    $("#panel_"+result.friendsGroupNames[i]).after('<div id="panel_group_'+result.friendsGroupNames[i]+'" class="panel-collapse collapse"><div class="panel-body"></div></div>');
                 	    

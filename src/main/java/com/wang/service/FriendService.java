@@ -28,7 +28,9 @@ public class FriendService{
 		friendDAO.addFriend("friend_"+id, friendId, groupName);
 	}
 
-
+	public List<String> getAlivedFriends(String userId){
+		return friendDAO.getAlivedFriends(userId);
+	}
 
 
 

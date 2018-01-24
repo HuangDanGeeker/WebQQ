@@ -48,6 +48,10 @@ public class UserService{
 		return userDAO.updateUser(user);
 	}
 	
+	public void logout(String userId){
+		userDAO.logout(userId);
+	}
+	
 	public boolean addFriend(String userId, String friendId, String groupName){
 		
 		userDAO.createRecordTable("record_"+getDBName(userId, friendId));

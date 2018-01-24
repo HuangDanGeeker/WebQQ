@@ -62,4 +62,8 @@
 	<update id="setAlive">
 		update user set alive = #{isAlive} where id = #{userId}
 	</update>
+	
+	<update id="logout">
+		update user set alive = false where id = #{userId}
+	</update>
 </mapper>

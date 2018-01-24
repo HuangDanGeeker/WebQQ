@@ -29,5 +29,7 @@ public interface IUserDAO{
 	public Boolean isAlive(@Param("userId")String userId);
 	
 	public void setAlive(@Param("userId")String userId, @Param("isAlive")boolean isAlive);
+	
+	public void logout(@Param("userId")String userId);
 
 }

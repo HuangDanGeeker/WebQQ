@@ -305,6 +305,13 @@ function startWS(userId) {
         console.log('webSocket opened');
     };
     ws.onmessage = function (message) {
+    	console.log(message.slice(0,1));
+    	if(message.slice(0,1) == "##"){
+    		message = message.subString(2);
+    		friendOffLine(message);
+    		return;
+    	}
+    	
     	//播放声音
     	playInformAudio('ios_message_audio');
     	
@@ -651,4 +658,9 @@ function addGroup(){
 function playInformAudio(audioName){
 	var audio = document.getElementById(audioName).play();
 	setTimeout(function(){document.getElementById(audioName).pause();}, 2000);
+}
+
+
+function friendOffLine(friendId){
+	$('#list_content_friend').find('#'+friendId).css('background-color', "#888888");
 }

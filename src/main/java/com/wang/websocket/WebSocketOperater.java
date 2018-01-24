@@ -13,7 +13,9 @@ import net.sf.json.JSONObject;
 
 import com.wang.model.UserList;
 import com.wang.service.ChatRecordService;
+import com.wang.service.FriendService;
 import com.wang.service.UnreachHistoryService;
+import com.wang.service.UserService;
 
 
 @ServerEndpoint("/websocket")
@@ -25,6 +27,10 @@ public class WebSocketOperater {
 	private UnreachHistoryService unreachHistoryService;
 	@Resource
 	private ChatRecordService chatRecordService;
+	@Resource
+	private UserService userService;
+	@Resource
+	private FriendService friendService;
 	
 	private SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 	
@@ -36,7 +42,7 @@ public class WebSocketOperater {
 		//#toUser:#msgType:content
 		String[] msgEntity = message.split(":#", 2);
 		Map<Session, String> userMap = UserList.getUserList();
-		Iterator iterator = userMap.keySet().iterator();
+		Iterator<Session> iterator = userMap.keySet().iterator();
 		Session toSession = null;
 		//FUTURE
 		// 测试:非法用户名处理
@@ -71,9 +77,24 @@ public class WebSocketOperater {
     }
 
     @OnClose
-    public void onClose(Session session) {
+    public void onClose(Session session) throws IOException {
     	Map<Session, String> userMap = UserList.getUserList();
+    	String logoutId = userMap.get(session);
+        userService.logout(logoutId);
         userMap.remove(session);
+        List<String> alivedFriends = friendService.getAlivedFriends(logoutId);
+        Iterator<String> friendsIterator = alivedFriends.iterator();
+		Iterator<Session> iterator = userMap.keySet().iterator();
+		Session toSession = null;
+		String friendId = null;
+		while(iterator.hasNext()){
+			toSession = (Session) iterator.next();
+			friendId = friendsIterator.next();
+			if(userMap.get(toSession).equalsIgnoreCase(friendId)){
+				toSession.getBasicRemote().sendText("##"+logoutId);
+			}
+		}
+		
         System.out.println("Connection closed");
         System.out.println(userMap.toString());
         

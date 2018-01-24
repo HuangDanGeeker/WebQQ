@@ -127,6 +127,16 @@ public class Restfull {
 
 	}
 	
+	//userId 退出
+	@RequestMapping(value="/logout/{userId}", method=RequestMethod.GET)
+	@ResponseBody
+	public void logout(@PathVariable String userId){
+		System.out.println("/logout/{userId}");
+		System.out.println("userId : "+userId);
+		userService.logout(userId);
+		return ;
+	}
+	
 	@RequestMapping(value="/queryIcon", method=RequestMethod.GET)
 	@ResponseBody
 	public Map<String, Object> querDefaultyIcon(){

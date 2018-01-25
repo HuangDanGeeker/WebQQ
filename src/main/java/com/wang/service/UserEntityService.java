@@ -53,7 +53,7 @@ public class UserEntityService{
 			userEntity.setFriendsIcons(friendImgUriList);
 			userEntity.setFriendAlives(friendAliveList);
 		}
-		
+		userService.setAlive(user.id, new Boolean(true));
 		return userEntity;
 	}
 	

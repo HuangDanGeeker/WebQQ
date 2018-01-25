@@ -1,15 +1,12 @@
 package com.wang.service;
 
 import java.util.List;
-
 import javax.annotation.Resource;
-
 import org.springframework.stereotype.Service;
-
 import com.wang.bean.Friend;
 import com.wang.dao.IFriendDAO;
 
-@Service("FriendService")
+@Service("friendService")
 public class FriendService{
 
 	@Resource

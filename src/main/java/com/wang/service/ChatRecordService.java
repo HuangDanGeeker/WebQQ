@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import com.wang.bean.ChatRecordItem;
 import com.wang.dao.IChatRecordDAO;
 
-@Service("ChatRecordService")
+@Service("chatRecordService")
 public class ChatRecordService extends BasicService{
 
 	@Resource

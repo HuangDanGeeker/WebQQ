@@ -17,7 +17,7 @@
 	</select>
 	
 	<insert id="addItem">
-		insert into ${dbName} values(#{srcId}, #{dstId}， #{content}, #{timestamp})
+		insert into ${dbName} values(#{srcId}, #{dstId}, #{content}, #{timestamp})
 	</insert>
 	
 	
@@ -29,5 +29,9 @@
 	<delete id="deleteUnreachRecordItems">
 		delete from ${dbName}
 	</delete>
+	
+	<insert id="addUnreadItem" parameterType="String">
+		insert into ${dbName} values(#{srcId}, #{content}, #{timestamp})
+	</insert>
 	
 </mapper>

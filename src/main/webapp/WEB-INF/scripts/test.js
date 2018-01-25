@@ -305,10 +305,14 @@ function startWS(userId) {
         console.log('webSocket opened');
     };
     ws.onmessage = function (message) {
-    	console.log(message.slice(0,1));
-    	if(message.slice(0,1) == "##"){
-    		message = message.subString(2);
-    		friendOffLine(message);
+    	console.log("slice : "+message.data.slice(0,2))
+    	console.log(typeof(message.data));
+    	console.log(message.data.toString().substring(2));
+    	
+    	if(message.data.slice(0,2) == "##"){
+    		var logoutId = message.data.toString().substring(2);
+    		console.log("offLine : "+logoutId);
+    		friendOffLine(logoutId);
     		return;
     	}
     	
@@ -316,7 +320,7 @@ function startWS(userId) {
     	playInformAudio('ios_message_audio');
     	
         //TODO 
-        var messageEntity = eval("("+message.data+")");
+    	var messageEntity = eval("("+message.data+")");
         console.log("==> "+messageEntity);
         //实时聊天记录 红点
         var item_talk = $('#list_content_talk').children("#"+messageEntity.from);

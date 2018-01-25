@@ -77,6 +77,10 @@ public class UserService{
 		return isAlive;
 	}
 	
+	public void setAlive(String userId, Boolean isAlive){
+		userDAO.setAlive(userId, isAlive);
+	}
+	
 	private String getDBName(String id_1, String id_2){
 		
 		if(id_1.length() < id_2.length()){

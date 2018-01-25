@@ -17,8 +17,8 @@
 	<select id="getAllFriends" resultMap="FriendMap" statementType="STATEMENT">
 		select * from ${dbName}
 	</select>
-	<select id="getAlivedFriends" resultMap="String" statementType="STATEMENT">
-		select id from user where id in (select friendId from friend_${userId}) and alive = ture
+	<select id="getAlivedFriends" resultType="String" statementType="STATEMENT">
+		select id from user where id in (select friendId from friend_${userId}) and alive = true
 	</select>
 	
 	<delete id="deleteFriend">

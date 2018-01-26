@@ -27,7 +27,7 @@ public class UnreachHistoryService{
 			map.put(f.getFriendId(), new ArrayList<HistoryEntity>());
 		}
 		
-		List<HistoryEntity> listOfHstryEntity = new ArrayList<HistoryEntity>();
+		List<HistoryEntity> listOfHstryEntity = null;
 		List<ChatRecordItem> unReadRecordItems = chatRecordDAO.getUnreachRecordItems("history_"+id);
 		for(ChatRecordItem item : unReadRecordItems){
 			listOfHstryEntity = map.get(item.getSrcId());

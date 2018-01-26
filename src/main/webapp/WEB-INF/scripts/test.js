@@ -102,8 +102,6 @@ window.onload = function () {
                  }
 //                console.log(talkDocument);
                 $('.list-friend').click( function () {
-                	clearInterval(flash['friend'+this.id]);
-                	clearInterval(flash['talk'+this.id]);
                 	$('#'+this.id).css("background-color", "rgb(120, 120, 120)");
                     $("#optsDialog").css("display", 'none');
                     $("#dialog").css("display", 'block');
@@ -123,7 +121,7 @@ window.onload = function () {
                 });
                 friendListDivChildren = $('#list_content_friend').children(); 
                 
-                
+                //todo
                 //初始化 消息记录列表
                 //{friendId:{"1":"talkcontent1","2":"talkContent2"},.....}
                 $.ajax({
@@ -556,22 +554,25 @@ function drawListTalkItem(parentDiv, imgSrc, content, className, id, history){
 	console.log(history);
 	if(history.length == 0)
 		return;
-	$(parentDiv).append('<div class="'+className+'"  id="'+id+'" ><a class="media-left" href="#"><img class="list-img media-object" src="'+imgSrc+'"></a><font><div class="media-body"><h4 class="media-heading">'+id+'</h4><div id="lastTalkContent">'+content+'</div></font></div>');
+	//here
+	$(parentDiv).append('<div class="list-talk" id="'+id+'" ><div style="height:100%; width:85%; float:left;"><a class="madia-left" href="#"><img class="media-object list-img" src="'+imgSrc+'" onerror=""></a><div class="media-body"><h4 class="media-heading">'+id+'</h4></div><div id="lastTalkContent">'+content+'</div></div><div style="height:100%;width:10%;float:left;"><span id="msgCount" style="background:red;  margin-top:30%;" class="badge">0</span></div></div>');
+	var msgCount = $("#list_content_talk").find('#'+id).find('#msgCount');
 	talkDocument[id] = "";
 	for(entities in history){
 		console.log(history[entities].flag);
 		console.log(history[entities].content);
 		if(history[entities].flag == "1"){
 			talkDocument[id] = talkDocument[id] + '<div class="leftBob"><img class="leftBobImg" src="'+imgSrc+'"><font>'+history[entities].content+'</font></div>';
+			msgCount.css("display", "inline-block").html(Number(msgCount.html())+1);
 		}else{
 			talkDocument[id] = talkDocument[id] + '<div class="rightBob"><font>'+history[entities].content+'</font><img class="rightBobImg" src="'+userIconUri+'"></div>';
 		}
 	}
 	
 	$('.'+className).click( function () {
-		clearInterval(flash['friend'+this.id]);
-    	clearInterval(flash['talk'+this.id]);
-    	$('#'+this.id).css("background-color", "rgb(120, 120, 120)");
+		$("#list_content_talk").find('#'+id).find('#msgCount').html("0");
+    	$(this).find("#msgCount").css("display", "none");
+		$('#'+this.id).css("background-color", "rgb(120, 120, 120)");
         $("#optsDialog").css("display", 'none');
         $("#dialog").css("display", 'block');
         $("#friendName").text(this.id);

@@ -8,6 +8,11 @@
 		<result column="content" property="content" jdbcType="VARCHAR"/>
 		<result column="timestamp" property="timeStamp" jdbcType="VARCHAR"/>
 	</resultMap>
+	<resultMap id="UnreachRecordItemMap" type="com.wang.bean.ChatRecordItem">
+		<result column="friendId" property="srcId" jdbcType="VARCHAR"/>
+		<result column="content" property="content" jdbcType="VARCHAR"/>
+		<result column="timestamp" property="timeStamp" jdbcType="VARCHAR"/>
+	</resultMap>
 
 	
 	<select id="getItems" resultMap="RecordItemMap" 
@@ -22,7 +27,7 @@
 	
 	
 	<!-- 可能RecordItemMap不适用 缺少dstId  -->
-	<select id="getUnreachRecordItems" resultMap="RecordItemMap">
+	<select id="getUnreachRecordItems" resultMap="UnreachRecordItemMap">
 		select * from ${dbName}
 	</select>
 	

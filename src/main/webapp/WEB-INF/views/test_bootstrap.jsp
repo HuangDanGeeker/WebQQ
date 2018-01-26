@@ -249,6 +249,7 @@
 	<audio id="ios_message_audio" src="http://localhost:8080/SpringMVC/sounds/ios_message.wav" controls="controls" loop="false" hidden="true" >
 	<audio id="ios_qq_audio" src="http://localhost:8080/SpringMVC/sounds/ios_qq.wav" controls="controls" loop="false" hidden="true" >
 	<audio id="send_success_audio" src="http://localhost:8080/SpringMVC/sounds/send_success.wav" controls="controls" loop="false" hidden="true" >
+	<audio id="friend_login_audio" src="http://localhost:8080/SpringMVC/sounds/friend_login.wav" controls="controls" loop="false" hidden="true" >
 </div>
 
 <script src="../SpringMVC/scripts/ui.js" type="text/javascript"></script>

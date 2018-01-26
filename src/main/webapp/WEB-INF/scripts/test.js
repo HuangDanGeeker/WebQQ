@@ -303,14 +303,21 @@ function startWS(userId) {
         console.log('webSocket opened');
     };
     ws.onmessage = function (message) {
-    	console.log("slice : "+message.data.slice(0,2))
-    	console.log(typeof(message.data));
-    	console.log(message.data.toString().substring(2));
-    	
     	if(message.data.slice(0,2) == "##"){
-    		var logoutId = message.data.toString().substring(2);
-    		console.log("offLine : "+logoutId);
-    		friendOffLine(logoutId);
+    		console.log("server infrom");
+    		var serverInfo = message.data.toString().substring(2).split(":");
+    		console.log(serverInfo[0]);
+    		switch(serverInfo[0]){
+    		case "friend_log_in":
+    			console.log("InLine : "+serverInfo[1]);
+        		friendInLine(serverInfo[1]);
+        		break;
+    		case "friend_log_out":
+    			console.log("offLine : "+serverInfo[1]);
+        		friendOffLine(serverInfo[1]);
+        		break;
+    		}
+    		
     		return;
     	}
     	
@@ -660,12 +667,27 @@ function addGroup(){
     
 }
 
-function playInformAudio(audioName){
+function playInformAudio(audioName, duration){
+	duration = duration ||　2000;
+	console.log(duration);
 	var audio = document.getElementById(audioName).play();
-	setTimeout(function(){document.getElementById(audioName).pause();}, 2000);
+	setTimeout(function(){document.getElementById(audioName).pause();}, duration);
 }
 
 
 function friendOffLine(friendId){
-	$('#list_content_friend').find('#'+friendId).css('background-color', "#888888");
+	console.log("friendOffLine");
+	var friendItem = $('#list_content_friend').find('#'+friendId);
+	friendItem.css('background-color', "#888888");
+	var groupAliveCount = friendItem.parent().parent().prev().find('#aliveCount');
+	groupAliveCount.html(Number(groupAliveCount.html())-1);
+}
+
+function friendInLine(friendId){
+	console.log("friendInLine");
+	var friendItem = $('#list_content_friend').find('#'+friendId);
+	friendItem.css('background-color', "#555555");
+	var groupAliveCount = friendItem.parent().parent().prev().find('#aliveCount');
+	groupAliveCount.html(Number(groupAliveCount.html())+1);
+	playInformAudio('friend_login_audio', 400);
 }

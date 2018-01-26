@@ -55,15 +55,27 @@ public class WebSocketOperater {
 	
 	
 	@OnOpen
-    public void onOpen(Session session) {
+    public synchronized void onOpen(Session session) throws IOException {
         System.out.println("=>Client connected" );
         //   /SpringMVC/websocket?uid=123
         String userId = session.getRequestURI().toString().substring(25);
 
         Map<Session, String> userMap = UserList.getUserList();
         userMap.put(session, userId); 
-        
         System.out.println(userMap.toString());
+        //通知在线的好友，user上线
+        List<String> alivedFriends = friendService.getAlivedFriends(userId);
+        Iterator<String> friendsIterator = alivedFriends.iterator();
+		Iterator<Session> iterator = userMap.keySet().iterator();
+		Session toSession = null;
+		String friendId = null;
+		while(iterator.hasNext() && friendsIterator.hasNext()){
+			toSession = (Session) iterator.next();
+			friendId = friendsIterator.next();
+			if(userMap.get(toSession).equalsIgnoreCase(friendId)){
+				toSession.getBasicRemote().sendText("##friend_log_in:"+userId);
+			}
+		}
     }
 
     @OnClose
@@ -82,7 +94,7 @@ public class WebSocketOperater {
 			friendId = friendsIterator.next();
 			System.out.println("session : "+toSession +" friendId : "+friendId);
 			if(userMap.get(toSession).equalsIgnoreCase(friendId)){
-				toSession.getBasicRemote().sendText("##"+logoutId);
+				toSession.getBasicRemote().sendText("##friend_log_out:"+logoutId);
 			}
 		}
 		

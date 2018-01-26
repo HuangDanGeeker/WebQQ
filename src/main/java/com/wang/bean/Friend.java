@@ -1,11 +1,22 @@
 package com.wang.bean;
-
+ 
+/**
+ * @author SteakingCoder
+ * @Description: 好友Bean
+ *
+ */
 public class Friend {
 
+	//好友id
 	private String friendId;
+	//好友头像id 
+	//@deprecated
 	private String friendImgId;
+	//好友头像uri
 	private String friendImgUri;
+	//好友所在分组的祖名
 	private String groupName;
+	
 	public String getFriendId() {
 		return friendId;
 	}

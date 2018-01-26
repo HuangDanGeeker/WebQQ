@@ -6,53 +6,67 @@ import org.apache.ibatis.annotations.Param;
 
 import com.wang.model.IconImageModel;
 
+/**
+ * @author SteakingCoder
+ * @Description: 图片相关DAO,主要应对用户头像
+ */
 public interface IImageDAO{
 	
-//	private String[] imageIds;
-//	private String[] imageUris;
-//	private List<IconImageModel> imageEntityList;
 	
-//TODO 原有的逻辑改变
-//	public IImageDAO() {
-//		MySqlConnection mySqlConnection = MySqlConnection.getInstance();
-//		Connection connection = mySqlConnection.getConnection();
-//		imageEntityList = new ArrayList<IconImageModel>();
-//		IconImageModel item = new IconImageModel();
-//		
-//		try {
-//			Statement statement = connection.createStatement();
-//			ResultSet resultSet = statement.executeQuery("select * from image");
-//			while (resultSet.next()) {
-//				item.setIconId(resultSet.getString(1));
-//				item.setUri(resultSet.getString(2));
-//				imageEntityList.add(item);
-//				item = new IconImageModel();
-//            }
-//			
-//			imageIds = new String[imageEntityList.size()];
-//			imageUris = new String[imageEntityList.size()];
-//			
-//			for(int i = 0; i < imageEntityList.size(); i++){
-//				item = imageEntityList.get(i);
-//				imageIds[i] = item.getIconId();
-//				imageUris[i] = item.getUri();
-//			}
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//		
-//	}
-
 	
+	
+	/**
+	 * @Description: 更改用户的头像
+	 * @param id 用户id
+	 * @param imageUri 用户想要更改的头像uri
+	 * @return     
+	 * @author SteakingCoder
+	 */
 	public boolean updateUserImage(@Param("id")String id, @Param("imageUri")String imageUri);
 	
+	
+	
+	/**
+	 * @Description: 返回所有的头像id
+	 * @return List<String>
+	 * @author SteakingCoder
+	 */
+	@Deprecated
 	public List<String> getAllImgIds();
 	
+	/**
+	 * @Description: 返回所有头像的uri
+	 * @return List<String>
+	 * @author SteakingCoder
+	 */
 	public List<String> getAllImgUris();
 	
+	/**
+	 * @Description: 返回所有头像对象(包括头像id和uri)
+	 * @return List<IconImageModel>
+	 * @author SteakingCoder
+	 */
 	public List<IconImageModel> getAllImgs();
 	
+	
+	
+	/**
+	 * @Description: 删除图片
+	 * @param imageId 
+	 * @author SteakingCoder
+	 */
+	@Deprecated
 	public void deleteImg(@Param("imageId")String imageId);
+	
+	
+	
+	
+	/**
+	 * @Description: 获取指定imgId的IconImageModel对象
+	 * @param imageId 图像id
+	 * @return IconImageModel
+	 * @author SteakingCoder
+	 */
 	public IconImageModel getImg(@Param("imageId")String imageId);
 	
 	

@@ -1,17 +1,18 @@
 package com.wang.controller;  
-  
-
-import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;  
 import org.springframework.web.bind.annotation.RequestMapping;  
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;  
-import com.wang.service.MyFriendService;
+
 
 @Controller
 public class HelloController {  
-   
+	
+	/**
+	 * @Description: 返回用户初始访问界面
+	 * @throws
+	 * @author SteakingCoder
+	 */
 	@RequestMapping("/hello")  
     public ModelAndView hello(){ 
 		System.out.println("hello");
@@ -22,6 +23,12 @@ public class HelloController {
   
      }   
 	
+	
+	/**
+	 * @Description: 展示所有的emoji图片
+	 * @param 
+	 * @author SteakingCoder
+	 */
 	@RequestMapping("/emoji")  
     public ModelAndView emoji(){ 
 		System.out.println("emoji");
@@ -31,6 +38,5 @@ public class HelloController {
          return mv;
   
      }   
-	
 	
 }  

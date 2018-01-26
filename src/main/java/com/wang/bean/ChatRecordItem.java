@@ -1,12 +1,21 @@
 package com.wang.bean;
 
 
+/**
+ * @author SteakingCoder
+ * Description: 消息记录Bean
+ */
 public class ChatRecordItem {
 
+	//发送方id
 	private String srcId;
+	//接收方id
 	private String dstId;
+	//消息内容
 	private String content;
+	//时间戳
 	private String timeStamp;
+	
 	public String getSrcId() {
 		return srcId;
 	}

@@ -1,15 +1,22 @@
 package com.wang.bean;
 
 
+/**
+ * @author SteakingCoder
+ * @Description: 用户个人信息Bean
+ */
 public class User {
 
-
 	public String id;
+	//头像uri
 	public String imageUri;
 	public String sex;
 	public int age;
+	//个性签名
 	public String signature;
+	//在线标志
 	public boolean isAlive;
+	
 	public User(){
 		
 	}
@@ -45,9 +52,9 @@ public class User {
 		this.signature = signature;
 	}
 	
+	//重写toString
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
 		return "{\"id\":\""+this.getId()+"\", \"age\":\""+this.getAge()+"\", \"sex\":\""+this.getSex()+"\", \"signature\":\""+this.getSignature()+"\"}";
 	}
 

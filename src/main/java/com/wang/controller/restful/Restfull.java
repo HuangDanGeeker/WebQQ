@@ -57,6 +57,13 @@ public class Restfull {
 	}
 	
 	
+	
+	
+	/**
+	 * @Description: 返回用户登录所需要的数据集
+	 * @param @param userId 用户登录的id
+	 * @author SteakingCoder
+	 */
 	@RequestMapping(value="/User/exist/{userId}")
 	@ResponseBody
 	public UserEntity checkUserExist(@PathVariable String userId){
@@ -89,7 +96,16 @@ public class Restfull {
 		return "{\"result\":1}";
 	}
 	
-	//获取 针针对某个人的消息记录
+	
+	
+	
+	/**
+	 * @Description: 获取用户与某个好友的消息记录
+	 * @param @param userId 用户id
+	 * @param @param friendId 好友id
+	 * @param @param num 返回消息记录的起始条数,每次返回都是固定的10条记录
+	 * @author SteakingCoder
+	 */
 	@RequestMapping(value="/history/{userId}/{friendId}/{num}", method=RequestMethod.GET)
 	@ResponseBody
 	public Map<String, Object> historyOf(@PathVariable String userId, @PathVariable String friendId, @PathVariable int num){
@@ -117,7 +133,13 @@ public class Restfull {
 
 	}
 	
-	//获取userId用户没有读的消息
+	
+	
+	/**
+	 * @Description: 获取userId用户没有读的消息
+	 * @param @param userId 用户id
+	 * @author SteakingCoder
+	 */
 	@RequestMapping(value="/history/{userId}", method=RequestMethod.GET)
 	@ResponseBody
 	public Map<String, List<HistoryEntity>> history(@PathVariable String userId){
@@ -127,7 +149,14 @@ public class Restfull {
 
 	}
 	
-	//userId 退出
+	
+	
+	
+	/**
+	 * @Description: 用户下线
+	 * @param @param userId  用户id    
+	 * @author SteakingCoder
+	 */
 	@RequestMapping(value="/logout/{userId}", method=RequestMethod.GET)
 	@ResponseBody
 	public void logout(@PathVariable String userId){
@@ -137,6 +166,12 @@ public class Restfull {
 		return ;
 	}
 	
+	
+	
+	/**
+	 * @Description: 获得用户所有可用的头像
+	 * @author SteakingCoder
+	 */
 	@RequestMapping(value="/queryIcon", method=RequestMethod.GET)
 	@ResponseBody
 	public Map<String, Object> querDefaultyIcon(){
@@ -160,6 +195,15 @@ public class Restfull {
 	
 	
 	
+	
+	
+	/**
+	 * @Description: 
+	 * @param @param Id 用户id
+	 * @param @param imageUri 要更换为的头像uri
+	 * @return "true"    
+	 * @author SteakingCoder
+	 */
 	@RequestMapping(value="/changeIcon/{Id}/{imageUri}", method=RequestMethod.GET)
 	@ResponseBody
 	public String changeIcon(@PathVariable String Id, @PathVariable String imageUri){
@@ -172,6 +216,15 @@ public class Restfull {
 		return "true";
 	}
 	
+	
+	
+	
+	/**
+	 * @Description: 返回用户的个人信息
+	 * @param @param userId
+	 * @return User对象的toString     
+	 * @author SteakingCoder
+	 */
 	@RequestMapping(value="/querySelfInfo/{userId}", method=RequestMethod.GET)
 	@ResponseBody
 	public String querySelfInfo(@PathVariable String userId){
@@ -183,6 +236,14 @@ public class Restfull {
 			
 	}
 	
+	
+	
+	/**
+	 * @Description: 更新用户的个人信息
+	 * @param @param user
+	 * @return ""     
+	 * @author SteakingCoder
+	 */
 	@RequestMapping(value="/updateSelfInfo", method=RequestMethod.POST)
 	@ResponseBody
 	public String uploadSelfInfo(@RequestBody User user){
@@ -193,6 +254,16 @@ public class Restfull {
 		return "";
 	}
 	
+	
+	
+	/**
+	 * @Description: 添加好友
+	 * @param @param id 用户id
+	 * @param @param friendId 要添加的好友id
+	 * @param @param groupName 添加到groupName分组中
+	 * @return json,用户是否存在，如果存在一并返回好友的头像uri     
+	 * @author SteakingCoder
+	 */
 	@RequestMapping(value="/queryUser/{id}/{friendId}/{groupName}", method=RequestMethod.GET)
 	@ResponseBody
 	public String addFriend(@PathVariable String id, @PathVariable String friendId, @PathVariable String groupName){
@@ -211,6 +282,16 @@ public class Restfull {
 	}
 	
 	
+	
+	
+	
+	/**
+	 * @Description: 用户上传自己本次登录发送过的消息
+	 * @param models HistoryModel[] 保存消息信息
+	 * @return ""    
+	 * @author SteakingCoder
+	 */
+	@Deprecated
 	@RequestMapping(value="/uploadHistory", method=RequestMethod.POST)
 	@ResponseBody
 	public String uploadHistory(@RequestBody HistoryModel[] models){

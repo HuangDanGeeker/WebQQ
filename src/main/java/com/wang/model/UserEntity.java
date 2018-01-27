@@ -9,50 +9,27 @@ import org.springframework.stereotype.Component;
 
 import com.wang.service.UserEntityService;
 
+/**
+ * @author SteakingCoder
+ * @Description: 用户实体,包含用户的个人信息,好友信息,在线状态
+ */
 @Component
 public class UserEntity {
-    private String userId;
-    private String[] friendsId;
-    private String[] friendsIcons;
-    private String[] friendsGroupNames;
-    private int exist;
-    private String iconUri;
-    private Boolean[] friendAlives;
+	
+    private String userId;					//用户id
+    private String[] friendsId;				//好友id数组
+    private String[] friendsIcons;			//好友头像uri数组
+    private String[] friendsGroupNames;		//好友所在分组
+    private int exist;						//该id用户是否存在
+    private String iconUri;					//该用户的头像uri
+    private Boolean[] friendAlives;			//用户登录时，在线的好友列表
+    
     //对friendsId friendsIcons做冗余
     private Map<String, String> friendMap = new HashMap<String, String>();
 
     @Resource
     private UserEntityService userEntityService = new UserEntityService();
     
-    public UserEntity(String userId){
-    	//TODO 
-    	//数据库获得数据
-    	
-    	//TEST
-//    	if(userId.equals("123")){
-//	    	this.userId = userId;
-//
-//	    	friendsId = new String[]{"456","789", "abc"};
-//	    	friendsIcons = new String[]{"456","789", "abc"};
-//	    	exist = 1;
-//    	}else if(userId.equals("abc")){
-//    		this.userId = userId;
-//	    	friendsId = new String[]{"cde","syz", "123"};
-//	    	friendsIcons = new String[]{"cde","syz", "123"};
-//	    	exist = 1;
-//    	}else{
-//    		this.userId = userId;
-//    		friendsId = null;
-//	    	friendsIcons = null;
-//    		exist = 0;
-//    	}
-//    	
-//    	friendMap.put("friendId1", "iconUri1");
-//    	friendMap.put("friendId2", "iconUri2");
-//    	friendMap.put("friendId3", "iconUri3");
-//    	iconUri = "http://localhost:8080/SpringMVC/images/defaultIcon.jpg";
-    }
-
     public UserEntity(){};
 
     public UserEntity getUserEntity(String id){
@@ -78,13 +55,9 @@ public class UserEntity {
 		this.friendsId = friendsId;
 	}
 
-
 	public int getExist() {
 		return exist;
 	}
-
-
-
 
 	public String[] getFriendsIcons() {
 		return friendsIcons;

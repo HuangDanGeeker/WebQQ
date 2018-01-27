@@ -1,16 +1,30 @@
 package com.wang.model;
 
-import java.util.Date;
-
+/**
+ * @author SteakingCoder
+ * @Description: 单条消息记录，相较HistoryEntity更加详细
+ */
 public class HistoryModel {
 
+	//消息的发送方
 	private String from;
+	//消息的接收方
 	private String to;
+	//消息内容
 	private String content;
+	//消息发送时间戳
     private String timestamp;
     
+    /**
+     * @Constructor
+     * @author SteakingCoder
+     */
     public HistoryModel(){}
 	
+    /**
+     * @Constructor
+     * @author SteakingCoder
+     */
 	public HistoryModel(String from, String to, String content, String timestamp){
 		this.from = from;
 		this.to = to;

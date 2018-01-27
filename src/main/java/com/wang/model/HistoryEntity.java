@@ -1,9 +1,15 @@
 package com.wang.model;
 
 
+/**
+ * @author SteakingCoder
+ * @Description: 单条消息记录
+ */
 public class HistoryEntity {
 
+	//枚举值 1好友发送的消息 0自己发送的消息
 	private String flag;
+	//消息内容
 	private String content;
     
 	public HistoryEntity(String flag, String content){

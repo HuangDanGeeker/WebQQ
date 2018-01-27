@@ -1,5 +1,6 @@
 package com.wang.model;
 
+@Deprecated
 public class Person {
 	
 	private String name;

@@ -1,13 +1,17 @@
 package com.wang.model;
 
+/**
+ * @author SteakingCoder
+ * @Description: 图片资源Model 
+ */
 public class IconImageModel {
 
+	// 图像id
 	private String imageId;
+	// 图像uri
 	private String imageUri;
 	
-	public IconImageModel() {
-		// TODO Auto-generated constructor stub
-	}
+	public IconImageModel() {}
 	
 	public IconImageModel(String iconId, String uri) {
 		// TODO Auto-generated constructor stub

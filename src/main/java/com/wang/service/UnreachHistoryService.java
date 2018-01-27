@@ -12,14 +12,34 @@ import com.wang.dao.IChatRecordDAO;
 import com.wang.model.HistoryEntity;
 
 
+/**
+ * @author SteakingCoder
+ * @Description 用户未读消息Service
+ */
 @Service
 public class UnreachHistoryService{
 
+	/**
+	 * Spring注入的FriendService
+	 */
 	@Resource
 	private FriendService friendListService;
+	/**
+	 * Spring注入的消息记录DAO
+	 */
 	@Resource
 	private IChatRecordDAO chatRecordDAO;
 	
+	
+	
+	
+	/**
+	 * 返回指定用户id的未读消息 Map<String friendId, List<HistoryEntity>>
+	 *
+	 * @param id 用户id
+	 * @return Map<String,List<HistoryEntity>>
+	 * @author SteakingCoder
+	 */
 	public Map<String,List<HistoryEntity>> getUnreachHistory(String id){
 		List<Friend> friendList = friendListService.getAllFriends(id);
 		Map<String, List<HistoryEntity>> map = new HashMap<String, List<HistoryEntity>>();
@@ -41,6 +61,17 @@ public class UnreachHistoryService{
 	
 	
 	
+	
+	
+	/**
+	 * 添加未读消息记录
+	 *
+	 * @param srcId 发送方id
+	 * @param dstId 接收方id,根据此id获得存储表名
+	 * @param content 消息内容
+	 * @param timestamp 消息时间戳
+	 * @author SteakingCoder
+	 */
 	public boolean addUnreachHistory(String srcId, String dstId, String content, String timestamp){
 
 		chatRecordDAO.addUnreadItem("history_"+dstId, srcId, content, timestamp);

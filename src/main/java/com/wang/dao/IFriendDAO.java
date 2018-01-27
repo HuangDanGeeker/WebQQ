@@ -44,10 +44,10 @@ public interface IFriendDAO {
 	public void deleteFriend(@Param("dbName")String dbName, @Param("friendId")String friendId);
 	
 	/**
-	 * @Description: 
-	 * @param dbName
-	 * @param friendId
-	 * @param groupName     
+	 * 向用户好友表dbName中添加好友信息(friendId, groupName) 
+	 * @param dbName 用户好友表表名
+	 * @param friendId 好友id
+	 * @param groupName 好友将要添加到的分组名    
 	 * @author SteakingCoder
 	 */
 	public void addFriend(@Param("dbName")String dbName, @Param("friendId")String friendId, @Param("groupName")String groupName);

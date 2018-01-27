@@ -8,13 +8,14 @@ import com.wang.bean.ChatRecordItem;
 
 /**
  * @author SteakingCoder
- * @Description: 消息记录DAO
+ * @Description 消息记录DAO
  */
 public interface IChatRecordDAO{
 
 	/**
 	 * 
-	 * @Description: 获取user1与user2的某10条聊天记录
+	 * 获取user1与user2的某10条聊天记录
+	 * 
 	 * @param dbName 数据表名
 	 * @param startNum 获取聊天记录的起始点
 	 * @param endNum 获取聊天记录的终止点

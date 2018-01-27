@@ -12,18 +12,35 @@ import com.wang.bean.Friend;
 import com.wang.bean.User;
 import com.wang.model.UserEntity;
 
+/**
+ * @author SteakingCoder
+ * @Description 用户实例Service
+ */
 @Service("userEntityService")
 public class UserEntityService{
 
+	/**
+	 * Spring 注入的用户Service
+	 */
 	@Resource
 	private UserService userService;
+	/**
+	 * Spring 注入的 好友Service
+	 */
 	@Resource
 	private FriendService friendService;
 
-	public UserEntityService() {
-		// TODO Auto-generated constructor stub
-	}
+	public UserEntityService() {}
 	
+	
+	
+	/**
+	 * 获得指定id的用户实例
+	 *
+	 * @param id
+	 * @return 
+	 * @author SteakingCoder
+	 */
 	public UserEntity get(String id) {
 		User user = userService.get(id);
 		UserEntity userEntity = new UserEntity();
@@ -57,32 +74,35 @@ public class UserEntityService{
 		return userEntity;
 	}
 	
+	
+	
+	/**
+	 * 获取指定id的User类，包含User的个人信息
+	 *
+	 * @param id 用户id
+	 * @return 
+	 * @author SteakingCoder
+	 */
 	public User getUser(String id) {
 		
 		User user = userService.get(id);
 		return user;
 	}
 
+	
+	
+	/**
+	 * 删除用户的好友
+	 *
+	 * @param userId 用户id
+	 * @param friendId 要删除的好友id
+	 * @return 
+	 * @author SteakingCoder
+	 */
 	public boolean deleteFriend(String userId, String friendId) {
 		friendService.deleteFriend(userId, friendId);
 		return true;
 	}
 
-	public UserService getUserService() {
-		return userService;
-	}
-
-	public void setUserService(UserService userService) {
-		this.userService = userService;
-	}
-
-	public FriendService getFriendListService() {
-		return friendService;
-	}
-
-	public void setFriendListService(FriendService friendListService) {
-		this.friendService = friendListService;
-	}
-
-
+	
 }

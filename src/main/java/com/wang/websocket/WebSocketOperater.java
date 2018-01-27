@@ -23,6 +23,18 @@ public class WebSocketOperater {
 	private FriendService friendService = (FriendService) ContextLoader.getCurrentWebApplicationContext().getBean("friendService");
 	private SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 	
+	
+	
+	
+	/**
+	 * websocket 处理消息接收
+	 *
+	 * @param message
+	 * @param session
+	 * @throws IOException
+	 * @throws InterruptedException 
+	 * @author SteakingCoder
+	 */
 	@OnMessage
 	public synchronized void onMessage(String message, Session session) 
 			throws IOException, InterruptedException {
@@ -54,6 +66,15 @@ public class WebSocketOperater {
 	}
 	
 	
+	
+	
+	/**
+	 * websocket 处理链接建立
+	 *
+	 * @param session
+	 * @throws IOException 
+	 * @author SteakingCoder
+	 */
 	@OnOpen
     public synchronized void onOpen(Session session) throws IOException {
         System.out.println("=>Client connected" );
@@ -78,6 +99,15 @@ public class WebSocketOperater {
 		}
     }
 
+    
+    
+    /**
+     * websocket 处理连接断开
+     *
+     * @param session
+     * @throws IOException 
+     * @author SteakingCoder
+     */
     @OnClose
     public synchronized void onClose(Session session) throws IOException {
     	Map<Session, String> userMap = UserList.getUserList();

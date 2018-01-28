@@ -54,7 +54,7 @@ window.onload = function () {
                 $("#loginInfo").text("用户不存在，请注册");
                 return;
             }else{
-            	$("title").html("we QQ -" + result.userId); 
+            	$("title").html("Web QQ - " + result.userId); 
                 //创建websocket
             	var ws = startWS(userId);
             	

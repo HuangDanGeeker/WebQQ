@@ -5,9 +5,9 @@
     <title>Web QQ</title>
     <meta http-equiv="content-type" content="text/html;charset=UTF-8">
     <script src="http://upcdn.b0.upaiyun.com/libs/jquery/jquery-2.0.2.min.js"></script>
-    <script src="../SpringMVC/twemoji2/twemoji.min.js" type="text/javascript"></script>
-    <link href="../SpringMVC/styles/test.css" rel="stylesheet" style="text/css"/>  
-    <link href="../SpringMVC/styles/emoji.css" rel="stylesheet" style="text/css"/>  
+    <script src="../WebQQ/twemoji2/twemoji.min.js" type="text/javascript"></script>
+    <link href="../WebQQ/styles/test.css" rel="stylesheet" style="text/css"/>  
+    <link href="../WebQQ/styles/emoji.css" rel="stylesheet" style="text/css"/>  
     <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">  
 	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
@@ -245,16 +245,16 @@
 
 </div>
 <div id="page_resources" class="container_fluid">
-	<audio id="didi_audio" src="http://localhost:8080/SpringMVC/sounds/didi.wav" controls="controls" loop="false" hidden="false">
-	<audio id="ios_message_audio" src="http://localhost:8080/SpringMVC/sounds/ios_message.wav" controls="controls" loop="false" hidden="true" >
-	<audio id="ios_qq_audio" src="http://localhost:8080/SpringMVC/sounds/ios_qq.wav" controls="controls" loop="false" hidden="true" >
-	<audio id="send_success_audio" src="http://localhost:8080/SpringMVC/sounds/send_success.wav" controls="controls" loop="false" hidden="true" >
-	<audio id="friend_login_audio" src="http://localhost:8080/SpringMVC/sounds/friend_login.wav" controls="controls" loop="false" hidden="true" >
+	<audio id="didi_audio" src="http://localhost:8080/WebQQ/sounds/didi.wav" controls="controls" loop="false" hidden="false">
+	<audio id="ios_message_audio" src="http://localhost:8080/WebQQ/sounds/ios_message.wav" controls="controls" loop="false" hidden="true" >
+	<audio id="ios_qq_audio" src="http://localhost:8080/WebQQ/sounds/ios_qq.wav" controls="controls" loop="false" hidden="true" >
+	<audio id="send_success_audio" src="http://localhost:8080/WebQQ/sounds/send_success.wav" controls="controls" loop="false" hidden="true" >
+	<audio id="friend_login_audio" src="http://localhost:8080/WebQQ/sounds/friend_login.wav" controls="controls" loop="false" hidden="true" >
 </div>
 
-<script src="../SpringMVC/scripts/ui.js" type="text/javascript"></script>
-<script src="../SpringMVC/scripts/test.js" type="text/javascript"></script>
-<script src="../SpringMVC/scripts/emojiInit.js" type="text/javascript"></script>
+<script src="../WebQQ/scripts/ui.js" type="text/javascript"></script>
+<script src="../WebQQ/scripts/test.js" type="text/javascript"></script>
+<script src="../WebQQ/scripts/emojiInit.js" type="text/javascript"></script>
 
 </body>
 </html>

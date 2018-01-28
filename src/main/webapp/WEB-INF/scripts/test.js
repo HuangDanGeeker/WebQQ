@@ -12,7 +12,7 @@ window.onload = function () {
 	
 	$('#signBtn').click(function(){
 		$.ajax({
-	        url:"http://localhost:8080/SpringMVC/apply",
+	        url:"http://localhost:8080/WebQQ/apply",
 	        dataType:'jsonp',
 	        processData: true, 
 	        type:'get',
@@ -34,7 +34,7 @@ window.onload = function () {
         }
      
         $.ajax({
-        url:"http://localhost:8080/SpringMVC/User/exist/"+userId,
+        url:"http://localhost:8080/WebQQ/User/exist/"+userId,
         dataType:'jsonp',
         processData: true, 
         type:'get',
@@ -125,7 +125,7 @@ window.onload = function () {
                 //初始化 消息记录列表
                 //{friendId:{"1":"talkcontent1","2":"talkContent2"},.....}
                 $.ajax({
-                	url:"http://localhost:8080/SpringMVC/history/"+userId,
+                	url:"http://localhost:8080/WebQQ/history/"+userId,
                     dataType:'jsonp',
                     processData: true, 
                     type:'get',
@@ -167,7 +167,7 @@ window.onload = function () {
         $('#changeIconDiv').slideToggle("slow");
         if($('#changeIconDiv').css("display")  == "block"){
         	$.ajax({
-        		url:"http://localhost:8080/SpringMVC/queryIcon",
+        		url:"http://localhost:8080/WebQQ/queryIcon",
     	        dataType:'jsonp',
     	        processData: true, 
     	        type:'get',
@@ -181,7 +181,7 @@ window.onload = function () {
     				$('.icons').click(function(){
     					var imageUri = this.src;
     					$.ajax({
-    						url:"http://localhost:8080/SpringMVC/changeIcon/"+userId+"/"+this.src.substring(39),
+    						url:"http://localhost:8080/WebQQ/changeIcon/"+userId+"/"+this.src.substring(39),
     		    	        dataType:'jsonp',
     		    	        processData: true, 
     		    	        type:'get',
@@ -279,7 +279,7 @@ window.onload = function () {
     $('#resignBtn').click(function(){
     	alert(userId+"已经下线");
     	ws.close();
-    	window.location = "http://localhost:8080/SpringMVC/hello";
+    	window.location = "http://localhost:8080/WebQQ/hello";
     });
     
 }
@@ -298,7 +298,7 @@ function getXmlHttpRequest(){
 
 function startWS(userId) {
 
-    ws = new WebSocket("ws://localhost:8080/SpringMVC/websocket?uid="+userId);
+    ws = new WebSocket("ws://localhost:8080/WebQQ/websocket?uid="+userId);
     ws.onopen =  function (msg) {
         console.log('webSocket opened');
     };
@@ -421,7 +421,7 @@ function startWS(userId) {
         
         $('#selfId').text("id : " + userId);
         $.ajax({
-			url:"http://localhost:8080/SpringMVC/querySelfInfo/"+userId,
+			url:"http://localhost:8080/WebQQ/querySelfInfo/"+userId,
 	        dataType:'jsonp',
 	        processData: true, 
 	        type:'get',
@@ -450,7 +450,7 @@ function startWS(userId) {
     		
     	};
     	$.ajax({
-    		url:"http://localhost:8080/SpringMVC/updateSelfInfo",
+    		url:"http://localhost:8080/WebQQ/updateSelfInfo",
             dataType:'json',
             data:JSON.stringify(selfInfo),
             contentType:"application/json",
@@ -472,7 +472,7 @@ function deleteFriend(){
 		return;
 	}
     $.ajax({
-		url:"http://localhost:8080/SpringMVC/delete/"+userId+"/"+ preDeleteFriendId+"/"+$('#fullDelete').is(':checked'),
+		url:"http://localhost:8080/WebQQ/delete/"+userId+"/"+ preDeleteFriendId+"/"+$('#fullDelete').is(':checked'),
         dataType:'jsonp',
         processData: true, 
         type:'get',
@@ -507,7 +507,7 @@ function addFriend(){
 //    	console.log(friendListDivChildren[i].id);
 //    	console.log($('#fullDelete').is(':checked'));
 	$.ajax({
-		url:"http://localhost:8080/SpringMVC/queryUser/"+ userId+"/"+preAddFriendId+"/"+preAddFriendGroup,
+		url:"http://localhost:8080/WebQQ/queryUser/"+ userId+"/"+preAddFriendId+"/"+preAddFriendGroup,
         dataType:'jsonp',
         processData: true, 
         type:'get',
@@ -545,7 +545,7 @@ function addFriend(){
 
 //function getUserIcon(userId){
 //	$.ajax({
-//		url:"http://localhost:8080/SpringMVC/queryIcon/"+ userId,
+//		url:"http://localhost:8080/WebQQ/queryIcon/"+ userId,
 //		dataType:'jsonp',
 //        processData: true, 
 //        type:'get',
@@ -607,7 +607,7 @@ function drawBob(singleChatText){
 function historyOf(friendId, num){
 //	alert("function historyOf " + friendId + "  "+ num);
 	$.ajax({
-        url:"http://localhost:8080/SpringMVC/history/"+userId+"/"+friendId+"/"+num,
+        url:"http://localhost:8080/WebQQ/history/"+userId+"/"+friendId+"/"+num,
         dataType:'jsonp',
         processData: true, 
         type:'get',
@@ -646,7 +646,7 @@ function addGroup(){
 	$('#addGroupInfo').text("");
 	var preAddGroupName = document.getElementById('addGroupName').value;
 	$.ajax({
-	    url:"http://localhost:8080/SpringMVC/queryUser/"+ userId+"/___/"+preAddGroupName,
+	    url:"http://localhost:8080/WebQQ/queryUser/"+ userId+"/___/"+preAddGroupName,
 	    dataType:'jsonp',
 	    processData: true, 
 	    type:'get',

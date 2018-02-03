@@ -278,6 +278,9 @@ public class Restfull {
 			
 			return "{\"friendId\":\""+friendId+"\", \"exist\":\"true\", \"imageIconUri\":\""+user.getImageUri()+"\"}";
 		}
+		if(friendId.equals("___")){
+			friendService.addFriend(id, friendId, groupName);
+		}
 		return "{\"friendId\":\""+friendId+"\", \"exist\":\"false\"}";
 	}
 	

@@ -79,7 +79,7 @@ public class WebSocketOperater {
     public synchronized void onOpen(Session session) throws IOException {
         System.out.println("=>Client connected" );
         //   /SpringMVC/websocket?uid=123
-        String userId = session.getRequestURI().toString().substring(25);
+        String userId = session.getRequestURI().toString().substring(21);
 
         Map<Session, String> userMap = UserList.getUserList();
         userMap.put(session, userId); 

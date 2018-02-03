@@ -75,11 +75,11 @@
    		<property name="location" value="classpath:configs/DB.properties"></property>
    	</bean>
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-    	 <property name="driverClassName" value="${driverClass}"></property>
+    	 <property name="driverClassName" value="${driver}"></property>
     	 <property name="url" value="${url}"></property>
     	 <property name="username" value="${user}"></property>
     	 <property name="password" value="${password}"></property>
-    	 <property name="initialSize" value="${initalSize}"></property>
+    	 <property name="initialSize" value="${initialSize}"></property>
     	 <!-- 连接池最大数量 -->  
          <property name="maxActive" value="${maxActive}"></property>  
          <!-- 连接池最大空闲 -->  

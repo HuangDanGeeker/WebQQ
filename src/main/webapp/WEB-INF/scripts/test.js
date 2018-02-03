@@ -653,9 +653,10 @@ function addGroup(){
 	    error:function(XMLHttpRequest, textStatus, errorThrown){
 	        var result = eval("("+XMLHttpRequest.responseText+")");
 	        console.log(result);
+	        console.log(result["exist"] == "false");
 	        if(result["exist"] == "false"){
 	            $('#addGroupInfo').text("添加成功");
-	            $('list_content_friend').append('<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a id="'+preAddGroupName+'" href="#'+preAddGroupName+'Div">'+preAddGroupName+'</a><br></h4></div></div><div id="'+preAddGroupName+'Div" class="panel-collapse collapse"><div class="panel-body"></div></div>');
+	            $('#list_content_friend').append('<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a id="'+preAddGroupName+'" href="#'+preAddGroupName+'Div">'+preAddGroupName+'</a><br></h4></div></div><div id="'+preAddGroupName+'Div" class="panel-collapse collapse"><div class="panel-body"></div></div>');
 	            $("#"+preAddGroupName).click(function(){
 	                $("#"+preAddGroupName+"Div").toggle("show");
 	            });
